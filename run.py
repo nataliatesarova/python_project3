@@ -12,8 +12,18 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project3')
 
-sheet = SHEET.worksheet('Sheet1')
 
-data = sheet.get_all_values()
 
-print(data)
+def main():
+    """
+    main function which has all business logic
+    """
+    # accessing sheet 1 for employee data
+    sheet = SHEET.worksheet('Sheet1')
+    data = sheet.get_all_values()
+    print(data)
+
+   
+
+# calling main function
+main()
