@@ -12,26 +12,13 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project3')
 
+
+
 def get_employee_data():
     """
      getting employee data from user
     """
-    # data = ['10', 'Julian','Jones','julianjones@gmail.com','721 878 900','Marketing','Marketing Agent','38400','1.9.2020']
-    # take input from the user
-    # while True:
-        # # print('input...')
-    print("Please enter employee data.")
-    print("Enter data separated by comma in order of: ID,Forename,Surname,Email,Telephone number,Department,Position,Annual salary,Start date.")
-    print("Example: 10,Julian,Jones,julianjones@gmail.com,721 878 900,Marketing,Marketing Agent,38400,1.9.2020\n")
 
-    data = input("Enter your data\n")
-
-    # employee_data = data.split(",")
-
-       
-
-        # add code for data validation
-    return employee_data
 
 def add_employee(sheet_name, data):
     """
@@ -49,14 +36,28 @@ def main():
     data = sheet.get_all_values()
     print(data)
 
-    # call a function, pass data, inside the function calculate size of data which gives you the number of employees in the sheet
-    # get the total number of employees subtract 1 to exclude the header row
-    number_employees = len(data) - 1
+   
+
     # loop over the records in the data using for loop and calculate monthly salary for each employee
+    first_row = data[0]
+    first_row.append('Monthly Salary')
+    for row in data[1:]:
+        # calculate monthly salary
+        value = row[7]
+        annual_salary = int(value)
+        monthly_salary = annual_salary / 12
+        # add monthly salary to row and round the result to 2 decimal places
+        row.append(round(monthly_salary, 2))
+
+    # add updated data to sheet
+    sheet.update(data)
 
     employee_data = get_employee_data()
     # add employee to sheet
     add_employee('Sheet1', employee_data)
+
+
+   
 
 # calling main function
 main()
