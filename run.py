@@ -18,21 +18,14 @@ def validate_data(data):
      Validation check of input data
     """
     try:
-        # data validation here
-        # check whether the user has entered 9 data points
         data_list = data.split(',')
         data_col_length = len(data_list)
         if data_col_length != 9:
             raise Exception('Insufficient columns entered')
 
-        # check for integer values in ID, phone number, annual salary columns
         data_id = data_list[0]
         data_phone = data_list[4]
         data_asalary = data_list[7]
-        print('data_id: ', data_id, ' data_phone:', data_phone, ' data_asalary: ', data_asalary)
-        print('checking int conversion: ', int(data_id))
-        print('checking int conversion: ', int(data_phone))
-        print('checking int conversion: ', int(data_asalary))
     except Exception:
         return False
     return True
@@ -40,76 +33,58 @@ def validate_data(data):
 
 def get_employee_data():
     """
-     getting employee data from user
+    function to get employee data from user input
     """
-    while True:
-        print("Please enter employee data.")
-        print("Enter data separated by comma in order of: ID,Forename,Surname,Email,Telephone number,Department,Position,Annual salary,Start date.")
-        print("Example: 10,Julian,Jones,julianjones@gmail.com,721878900,Marketing,Marketing Agent,38400,1.9.2020\n")
+    # Prompt user to enter employee data
+    print("Please enter employee data.")
+    # Provide instructions on how to enter data
+    print("Enter data separated by comma in order of: ID,Forename,Surname,Email,Telephone number,Department,Position,Annual salary,Start date.")
+    print("Example: 10,Julian,Jones,julianjones@gmail.com,721878900,Marketing,Marketing Agent,38400,1.9.2020\n")
 
-        data = input("Enter your data\n")
-        print('data is: ', data)
+    # Get user input for employee data
+    data = input("Enter your data\n")
+    print('data is: ', data)
 
-        if (validate_data(data)):
-            print('data validation successful')
-            break
+    # Validate user input data
+    if (not validate_data(data)):
+        print('data validation failed')
+        return
 
+    # Split the data by commas and store in list
     employee_data = data.split(",")
-    print('employee data is: ', employee_data)
-    return employee_data
+    # Extract the annual salary value from the list
+    value = employee_data[7]
+    # Convert annual salary value to float
+    annual_salary = float(value)
+    # Calculate monthly salary by dividing annual salary by 12
+    monthly_salary = annual_salary / 12
+    # Append the monthly salary value to the employee data list
+    employee_data.append(round(monthly_salary, 2))
+    # Call the add_employee function to add the employee data to the spredsheet
+    add_employee('Sheet1', employee_data)
+    # print confirmation message to user that employee data has been added
+    print("Employee data added successfully")
 
 
 def add_employee(sheet_name, data):
     """
     code to add a new employee into the sheet
     """
+    # Get the worksheet with the specified name
     sheet = SHEET.worksheet(sheet_name)
+    # Append a new row to the worksheet with the employee data
     sheet.append_row(data)
 
 
-def delete_employee(sheet_name, employee_id):
-    """
-    code to delete an employee from the sheet
-    """
-    sheet = SHEET.worksheet(sheet_name)
-    data = sheet.get_all_values()
-    headers = data[0]
-    id_index = headers.index('ID')
-# find the row corresponding to the given employee ID
-    for row in data[1:]:
-        if row[id_index] == employee_id:
-            # delete the row and return True to indicate success
-            sheet.delete_rows(data.index(row) + 1)  # add 1 to account for header row
-            return True
-# if no employee with the given ID was found, return False to indicate failure
-    return False
 
 
 def main():
-    """
-    main function which has all business logic
-    """
-    # accessing sheet 1 for employee data
-    sheet = SHEET.worksheet('Sheet1')
-    data = sheet.get_all_values()
-    # print(data)
+    # """
+    # Main function which has all business logic to control the difference options.
+    # Based on the option user selected, appropriate function will be called.
+    # """
+  
 
-    # loop over the records in the data using for loop and calculate monthly salary for each employee
-    first_row = data[0]
-    first_row.append('Monthly Salary')
-    for row in data[1:]:
-        # calculate monthly salary
-        value = row[7]
-        annual_salary = int(value)
-        monthly_salary = annual_salary / 12
-        # add monthly salary to row and rounds the result to 2 decimal placed
-        row.append(round(monthly_salary, 2))
 
-    # add updated data to sheet
-    sheet.update(data)
-
-    employee_data = get_employee_data()
-    # add employee to sheet
-    add_employee('Sheet1', employee_data) 
-print("Welcome to Employee Data System")
+# Executions starts from the main function here
 main()
