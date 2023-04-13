@@ -100,6 +100,28 @@ def delete_employee():
     print("No matching row found")
 
 
+def search_employee_data():
+    """
+    Searches for employee data based on ID and prints the row if found
+    """
+    # Prompt user to input ID to search for
+    id = input("Enter the ID: ")
+
+    # Open the Sheet1 worksheet and get all data
+    sheet = SHEET.worksheet('Sheet1')
+    data = sheet.get_all_values()
+
+    # Iterate through each row in data and check if ID matches
+    for row in data[1:]:
+        if row[0] == id:
+            # print row data if ID matches
+            print(row)
+            return
+    # If no match found, print message
+    print("No matching was found for the ID")
+
+
+
 
 
 
