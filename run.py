@@ -76,6 +76,31 @@ def add_employee(sheet_name, data):
     sheet.append_row(data)
 
 
+def delete_employee():
+    """
+    code to delete an employee from the sheet
+    """
+    # Ask user for the employee ID to be deleted
+    id = input("Enter the ID to be deleted: ")
+
+    # Get the sheet
+    sheet = SHEET.worksheet('Sheet1')
+    # Get all the data in the sheet
+    data = sheet.get_all_values()
+
+    # Loop through the data rows and check if the ID matches
+    for i in range(1, len(data) - 1):
+        row = data[i]
+        if row[0] == id:
+            # If match found, delete the row and print message
+            sheet.delete_rows(i + 1)
+            print("Row deleted")
+            return
+    # If no match found, print message
+    print("No matching row found")
+
+
+
 
 
 def main():
