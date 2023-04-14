@@ -134,7 +134,14 @@ def edit_employee_data():
 
     editing_row = -1
     # Find the row to be edited
+      for i in range(1, len(data) - 1):
+        row = data[i]
+        if row[0] == id:
+            editing_row = i
+            break
     
+   
+
     
     
 
