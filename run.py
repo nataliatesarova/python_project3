@@ -153,17 +153,27 @@ def edit_employee_data():
         employee_data = dataset.split(",")
 
 
-      
-
-
-    
-    
-
         # Calculate the monthly salary of the employee
         value = employee_data[6]
         annual_salary = float(value)
         monthly_salary = annual_salary / 12
         employee_data.append(round(monthly_salary, 2))
+
+        # Update the data in the worksheet
+        sheet = SHEET.worksheet('Sheet1')
+        editing_row = editing_row + 1
+        sheet.update_cell(editing_row, 2, employee_data[0])
+        sheet.update_cell(editing_row, 3, employee_data[1])
+        sheet.update_cell(editing_row, 4, employee_data[2])
+        sheet.update_cell(editing_row, 5, employee_data[3])
+        sheet.update_cell(editing_row, 6, employee_data[4])
+        sheet.update_cell(editing_row, 7, employee_data[5])
+        sheet.update_cell(editing_row, 8, employee_data[6])
+        sheet.update_cell(editing_row, 9, employee_data[7])
+        sheet.update_cell(editing_row, 10, employee_data[8])
+
+        print("Editing success")    
+
 
        
 
