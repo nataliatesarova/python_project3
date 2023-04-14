@@ -120,6 +120,33 @@ def search_employee_data():
     # If no match found, print message
     print("No matching was found for the ID")
 
+def edit_employee_data():
+    """
+    Code to edit the details of an existing employee
+    """
+    # Get the ID of the employee to be edited
+    id = input("Enter the ID to be edited: ")
+
+    # Get the worksheet 'Sheet1'
+    sheet = SHEET.worksheet('Sheet1')
+    # Get all the data from the worksheet
+    data = sheet.get_all_values()
+
+    editing_row = -1
+    # Find the row to be edited
+    
+    
+    
+
+        # Calculate the monthly salary of the employee
+        value = employee_data[6]
+        annual_salary = float(value)
+        monthly_salary = annual_salary / 12
+        employee_data.append(round(monthly_salary, 2))
+
+       
+
+
 
 
 
