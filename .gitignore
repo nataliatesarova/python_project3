@@ -7,3 +7,6 @@ __pycache__/
 node_modules/
 .github/
 creds.json
+package.json
+index.js.json
+package-lock.json
