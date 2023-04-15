@@ -120,6 +120,7 @@ def search_employee_data():
     # If no match found, print message
     print("No matching was found for the ID")
 
+
 def edit_employee_data():
     """
     Code to edit the details of an existing employee
@@ -172,6 +173,7 @@ def edit_employee_data():
         sheet.update_cell(editing_row, 10, employee_data[8])
 
         print("Editing success")    
+
 
 def main():
     """
