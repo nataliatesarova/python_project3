@@ -47,7 +47,7 @@ def get_employee_data():
 
     # Validate user input data
     if (not validate_data(data)):
-        print('data validation failed')
+        print('Data validation failed')
         return
 
     # Split the data by commas and store in list

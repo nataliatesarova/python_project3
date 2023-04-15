@@ -13,25 +13,36 @@ Option 1 allows the user to enter new employee forename, surname, email, telepho
 
 ![option 1 selected](assets/images/.png)
 
+With correct entry of the data the user is provided with confirmation message 'Employee data added successfully' and the main options are presented.
+
+![Employee data added successfully](assets/images/.png)
+
+If all the data points required are not entered in the correct format the user is informed with the message 'Data validation failed' and the main options are presented.
+
+![data validation failed](assets/images/.png)
+
 ### Search for employee data
-Option 2 allows the user to search for a current employee by entering the employees ID
+Option 2 allows the user to search for a current employee by entering the employees ID.
 
 ![option 2 selected](assets/images/.png)
 
+If an ID is not matched the user is informed with the message 'No matching was found for the ID' and the main options are presented.
+
+![No matching ID](assets/images/.png)
+
 ### Edit employee data
-Option 3 allows the user to edit the data of a current employee after entering the employees ID
+Option 3 allows the user to edit the data of a current employee after entering the employees ID.
 
 ![option 3 selected](assets/images/.png)
 
 ### Delete employee data
-Option 4 allows the user to delete the data of a current employee after entering the employees ID
+Option 4 allows the user to delete the data of a current employee after entering the employees ID.
 
 ![option 4 selected](assets/images/.png)
 
-### Delete employee data
+### Exit
 Option 5 allows the user to exit the program.
 
-![option 5 selected](assets/images/.png)
 
 ## User Experience (UX)
 The software tool aims to allow users to simply and efficiently:  
