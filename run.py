@@ -12,7 +12,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project3')
 
-
 def validate_data(data):
     """
      Validation check of input data
@@ -29,7 +28,6 @@ def validate_data(data):
     except Exception:
         return False
     return True
-
 
 def get_employee_data():
     """
@@ -65,7 +63,6 @@ def get_employee_data():
     # print confirmation message to user that employee data has been added
     print("Employee data added successfully")
 
-
 def add_employee(sheet_name, data):
     """
     code to add a new employee into the sheet
@@ -74,7 +71,6 @@ def add_employee(sheet_name, data):
     sheet = SHEET.worksheet(sheet_name)
     # Append a new row to the worksheet with the employee data
     sheet.append_row(data)
-
 
 def delete_employee():
     """
@@ -98,7 +94,6 @@ def delete_employee():
             return
     # If no match found, print message
     print("No matching row found")
-
 
 def search_employee_data():
     """
@@ -146,12 +141,11 @@ def edit_employee_data():
     else:
         # If a matching data is found
         # Get the details to be updated from the user
-        print("Enter data separated by comma in order of: Forename,Surname,Email,Telephone number,Department,Position,Annual salary,Start date.")
+        print("Enter data separated by comma in order of:\nForename,Surname,Email,Telephone number,\nDepartment,Position,Annual salary,Start date.")
         print("Example: Julian,Jones,julianjones@gmail.com,721878900,Marketing,Marketing Agent,38400,1.9.2020\n")
 
         dataset = input("Enter your data\n")
         employee_data = dataset.split(",")
-
 
         # Calculate the monthly salary of the employee
         value = employee_data[6]
@@ -174,22 +168,31 @@ def edit_employee_data():
 
         print("Editing success")    
 
-
-       
-
-
-
-
-
-
-
 def main():
-    # """
-    # Main function which has all business logic to control the difference options.
-    # Based on the option user selected, appropriate function will be called.
-    # """
-  
+    """
+    Main function which has all business logic to control the difference options.
+    Based on the option user selected, appropriate function will be called.
+    """
+    print("Welcome to Employee Data System")
+    while True:
+        print("\n\n1. Add new employee data")
+        print("2. Search for employee data")
+        print("3. Edit employee data")
+        print("4. Delete employee data")
+        print("5. Exit")
 
+        option = int(input("Please select one option: "))
+
+        if option == 1:
+            get_employee_data()
+        elif option == 2:
+            search_employee_data()
+        elif option == 3:
+            edit_employee_data()
+        elif option == 4:
+            delete_employee()
+        elif option == 5:
+            break
 
 # Executions starts from the main function here
 main()
