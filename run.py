@@ -23,9 +23,9 @@ def validate_data(data):
         if data_col_length != 9:
             raise Exception('Insufficient columns entered')
 
-        data_id = data_list[0]
-        data_phone = data_list[4]
-        data_asalary = data_list[7]
+        # data_id = data_list[0]
+        # data_phone = data_list[4]
+        # data_asalary = data_list[7]
     except Exception:
         return False
     return True
@@ -38,9 +38,12 @@ def get_employee_data():
     # Prompt user to enter employee data
     print("Please enter employee data.")
     # Provide instructions on how to enter data
-    print("Enter data separated by comma in order of:\nID,Forename,Surname,Email,Telephone number,\nDepartment,Position,Annual salary,Start date.")
-    print("Example:\n10,Julian,Jones,julianjones@gmail.com,721878900,\nMarketing,Marketing Agent,38400,1.9.2020\n")
-
+    print("Enter data separated by comma in order of:\n"
+          "ID,Forename,Surname,Email,Telephone number,\n"
+          "Department,Position,Annual salary,Start date.")
+    print("Example:\n"
+          "10,Julian,Jones,julianjones@gmail.com,721878900,\n"
+          "Marketing,Marketing Agent,38400,1.9.2020\n")
     # Get user input for employee data
     data = input("Enter your data\n")
     print('data is: ', data)
@@ -89,7 +92,7 @@ def delete_employee():
     data = sheet.get_all_values()
 
     # Loop through the data rows and check if the ID matches
-    for i in range(1, len(data) - 1):
+    for i in range(1, len(data)):
         row = data[i]
         if row[0] == id:
             # If match found, delete the row and print message
@@ -140,15 +143,18 @@ def edit_employee_data():
         if row[0] == id:
             editing_row = i
             break
-    
     if editing_row == -1:
         # If no matching data is found
         print("No matching data found")
     else:
         # If a matching data is found
         # Get the details to be updated from the user
-        print("Enter data separated by comma in order of:\nForename,Surname,Email,Telephone number,\nDepartment,Position,Annual salary,Start date.")
-        print("Example: Julian,Jones,julianjones@gmail.com,721878900,Marketing,Marketing Agent,38400,1.9.2020\n")
+        print("Enter data separated by comma in order of:\n"
+              "ID,Forename,Surname,Email,Telephone number,\n"
+              "Department,Position,Annual salary,Start date.")
+        print("Example:\n"
+              "10,Julian,Jones,julianjones@gmail.com,721878900,\n"
+              "Marketing,Marketing Agent,38400,1.9.2020\n")
 
         dataset = input("Enter your data\n")
         employee_data = dataset.split(",")
@@ -172,12 +178,12 @@ def edit_employee_data():
         sheet.update_cell(editing_row, 9, employee_data[7])
         sheet.update_cell(editing_row, 10, employee_data[8])
 
-        print("Editing success")    
+        print("Editing success")
 
 
 def main():
     """
-    Main function which has all business logic to control the difference options.
+    Main function with all business logic to control the difference options.
     Based on the option user selected, appropriate function will be called.
     """
     print("Welcome to Employee Data System")
@@ -200,6 +206,7 @@ def main():
             delete_employee()
         elif option == 5:
             break
+
 
 # Executions starts from the main function here
 main()

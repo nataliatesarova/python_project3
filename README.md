@@ -61,3 +61,16 @@ Confirmation and error messages: Users receive confirmation messages when their 
 -A future version could include more detailed error messaging and interactive prompts to guide the user through the process.
 
 -In a future iteration, incorporating HTML and CSS could enhance the program's usability by providing a user-friendly interface for users to interact with the program's functionality.
+
+## Technologies Used
+# Language used 
+Python
+
+# Frameworks, Libraries & Programs Used
+Google sheets - used to store and manage program data.
+Gspread - a python library that provides an interface to interact with Google. Sheets API.
+Google Auth - utilized to grant the app permission to interact with Google Sheets.
+Gitpod - employed to develop, modify, and compile the code for the program.
+Lucidchart - utilized for creating flow charts.
+Heroku -  used to deploy the application.
+
