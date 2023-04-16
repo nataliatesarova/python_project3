@@ -1,5 +1,5 @@
 # Employee Management System
-The Employee Management System is a software tool that enables users to manage employee data using a Google Sheet. 
+The [Employee Management System](https://project3tesarova.herokuapp.com/) is a software application that provides users with an effective means of managing employee data by utilizing Google Sheets. This tool is designed to streamline the management of employee information and improve the efficiency of HR processes. 
 
 ![start page ?different devices]()
 
@@ -79,11 +79,12 @@ Python
 
 ### Frameworks, Libraries & Programs
 * [Google sheets](https://www.google.com/sheets/about/) - used to store and manage program data.
-* [Gspread](https://docs.gspread.org/en/v5.7.1/) - a python library that provides an interface to interact with Google. Sheets API.
-* Google Auth - a framework that provides a secure and easy way to enable the application to access Google APIs, such as Google Sheets API.
-* Gitpod - employed to develop, modify, and compile the code for the program.
-* Lucidchart - utilized for creating flow charts.
-* Heroku -  used to deploy the application.
+* [Gspread](https://docs.gspread.org/en/v5.7.1/) - a Python library that simplifies the process of programmatically interacting with Google Sheets.
+* [Google Auth](https://google-auth.readthedocs.io/en/master/) - a framework that provides a secure and easy way to enable the application to access Google APIs, such as Google Sheets API.
+* [Github](https://github.com/) - cloud based hosting service to save and store the files.
+* Git - version control system.
+* [Lucidchart](https://www.lucidchart.com/pages/tour) - Utilized to create the flow chart.
+* [Heroku](https://dashboard.heroku.com/apps) - used to deploy the application.
 
 ## Testing
 [Code Institute Python Linter](https://pep8ci.herokuapp.com/#) - was used for validation to ensure no Python code errors.
@@ -121,24 +122,14 @@ Editing and deleting the last row
 ## Terminal Compatibility
 The Employee Management System has been designed to be deployed and utilized on Heroku. The terminal template was specifically created by Code Institute to be compatible with the Heroku platform. It may not function properly on a local terminal due to differences in positioning and other technical aspects, even if the program's functionality remains unchanged. Therefore, it is recommended to use the system exclusively on the Heroku platform.
 
-## Deployment
-Heroku
+## Heroku Deployment
 
-
-Deployment to Github Pages
-The site was deployed to GitHub pages. Deployment requires the following steps:
-In the GitHub repository, navigate to the Settings tab.
-From the menu on left select 'Pages'.
-From the source section drop-down menu, select the Branch: main.
-Click 'Save'.
-A link will be displayed in a green banner when published successfully. The link is available here. LINNKKKKKKKKKKKKKKKKKK
-
-How to Clone
-To clone a repository from GitHub to your local machine.
-In the GitHub repository click the Code button above the repository files.
-Copy the URL for the repository and choose either: HTTP, SSH or GitHub CLI.
-Open your terminal and change the current working directory to the location where you would like the cloned directory.
-Type git clone, paste the URL copied earlier and press enter.
+* Fork or clone the repository from [GitHub](https://github.com/nataliatesarova/python_project3)
+* Create a new Heroku app by logging in to the Heroku account and clicking the "New" button in the dashboard.
+* Give the Heroku app a unique name and select the preferred region.
+* In the "Deploy" tab of your Heroku app's dashboard, set the buildpacks to Python and NodeJS in that order.
+* Link the Heroku app to the repository by going to the "Deploy" tab and selecting the GitHub deployment method. Then search for and connect the repository to Heroku.
+* Click on the "Deploy" button to start the deployment process.
 
 ## Credits
 I would like to thank my mentor Rory Sheridan and all the tutors, teachers and student colleagues for help and advice on the project.
