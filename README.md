@@ -8,7 +8,6 @@ There are 4 main features of the Employee Management System
 
 ![Four features](readme-docs/images/features.png)
 
-
 ### Add new employee data
 Option 1 allows the user to enter new employee forename, surname, email, telephone number, department, position, annual salary, and start date.
 
@@ -45,19 +44,17 @@ Option 4 allows the user to delete the data of a current employee after entering
 Option 5 allows the user to exit the program.
 
 ## User Experience (UX)
-
-The software tool is designed to offer users a simple and efficient experience by enabling them to add, delete, search, and edit employee data in a Google Sheet. To enhance user experience, the following features have been implemented:
+The software tool is designed to offer users a simple and efficient experience by enabling add, delete, search, and edit of employee data in a Google Sheet. To enhance user experience, the following features have been implemented:
 
 Input validation: The validate_data() function checks that the user's input contains the correct number of columns and provides clear feedback on how to correct errors.
 
-Instructions for data entry: The get_employee_data() function offers instructions on how to enter data, along with an example.
+Instructions for data entry: The get employee data function offers instructions on how to enter data, along with an example.
 
-Confirmation and error messages: Users receive confirmation messages when their actions are successful (e.g., adding an employee) and error messages when their input does not match any data in the sheet. These messages provide clarity and reduce uncertainty. 
+Confirmation and error messages: Users receive confirmation messages when their actions are successful (e.g., adding an employee) and error messages when the ID does not match any data in the sheet. These messages provide clarity and reduce uncertainty. 
 
 ## Flow Chart
 
 ![Flow Chart](readme-docs/images/Flowchart.png)
-
 
 ## Google Sheet
 The Python script interacts with a Google Sheet using the gspread library allowing the adding, deleting, editing and searching of employee data, in addition to calculating monthly salary. The program provides a basic user interface for interacting with the Sheet.
@@ -109,20 +106,17 @@ If the data entered is not in the correct format or the ID is not matched for se
 
 ![Data validation failed](readme-docs/images/.png)
 ![No matching data found](readme-docs/images/.png)
-
-The messages provide clarity and reduce uncertainty for the user. 
-
+ 
 The application was tested on Google Chrome, Safari, Firefox and Microsoft Edge browsers without issues.
 
 ## Bugs
-Editing and deleting the last row
+An error was found with the editing and deleting of the last row of the sheet. The issue was caused by the use of range(1, len(data) - 1) in the for loop, which excluded the last row of the sheet. This problem was fixed by changing the range to range(1, len(data) + 1), which allowed the loop to iterate over all rows in the data list, including the last row. 
 
 ## Heroku Deployment
 The Employee Management System has been designed to be deployed and utilized on Heroku. The terminal template was specifically created by Code Institute to be compatible with the Heroku platform. It may not function properly on a local terminal due to differences in positioning and other technical aspects, even if the program's functionality remains unchanged. Therefore, it is recommended to use the system exclusively on the Heroku platform.
 
 * Fork or clone the repository from [GitHub](https://github.com/nataliatesarova/python_project3)
 * Create a new Heroku app by logging in to the Heroku account and clicking the "New" button in the dashboard.
-* Give the Heroku app a unique name and select the preferred region.
 * In the "Deploy" tab of your Heroku app's dashboard, set the buildpacks to Python and NodeJS in that order.
 * Link the Heroku app to the repository by going to the "Deploy" tab and selecting the GitHub deployment method. Then search for and connect the repository to Heroku.
 * Click on the "Deploy" button to start the deployment process.
@@ -130,8 +124,8 @@ The Employee Management System has been designed to be deployed and utilized on 
 ## Credits and Acknowledgements
 I would like to thank my mentor Rory Sheridan and all the tutors, teachers and student colleagues for help and advice on the project.
 
-[Clarification on Elif Else statement](https://www.youtube.com/watch?v=Zp5MuPOtsSY), Programming with Mosh.
+Clarification on Elif Else statement [Programming with Mosh](https://www.youtube.com/watch?v=Zp5MuPOtsSY).
 
-[Instruction on While True in Python](https://www.boardinfinity.com/blog/use-while-true-in-python/), Board Infinity
+Instruction on While True in Python [Board Infinity](https://www.boardinfinity.com/blog/use-while-true-in-python/).
 
-[Instruction on Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html), Python
+Instruction on Errors and Exceptions [Python](https://docs.python.org/3/tutorial/errors.html).

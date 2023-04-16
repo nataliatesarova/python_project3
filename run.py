@@ -89,7 +89,7 @@ def delete_employee():
     data = sheet.get_all_values()
 
     # Loop through the data rows and check if the ID matches
-    for i in range(1, len(data)):
+    for i in range(1, len(data) + 1):
         row = data[i]
         if row[0] == id:
             # If match found, delete the row and print message
@@ -135,20 +135,23 @@ def edit_employee_data():
 
     editing_row = -1
     # Find the row to be edited
-    for i in range(1, len(data) - 1):
+    for i in range(1, len(data) + 1):
         row = data[i]
         if row[0] == id:
             editing_row = i
             break
-    
     if editing_row == -1:
         # If no matching data is found
         print("No matching data found")
     else:
         # If a matching data is found
         # Get the details to be updated from the user
-        print("Enter data separated by comma in order of: Forename,Surname,Email,Telephone number,Department,Position,Annual salary,Start date.")
-        print("Example: Julian,Jones,julianjones@gmail.com,721878900,Marketing,Marketing Agent,38400,1.9.2020\n")
+        print("Enter data separated by comma in order of:\n"
+              "Forename,Surname,Email,Telephone number,\n"
+              "Department,Position,Annual salary,Start date.")
+        print("Example:\n"
+              "Julian,Jones,julianjones@gmail.com,721878900,\n"
+              "Marketing,Marketing Agent,38400,1.9.2020\n")
 
         dataset = input("Enter your data\n")
         employee_data = dataset.split(",")
@@ -201,7 +204,7 @@ def main():
             delete_employee()
         else:
             print("Invalid option selected. Please try again.")
-       
-       
+
+
 # Executions starts from the main function here
 main()
