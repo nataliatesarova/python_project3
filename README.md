@@ -1,47 +1,46 @@
 # Employee Management System
 The [Employee Management System](https://project3tesarova.herokuapp.com/) is a software application that provides users with an effective means of managing employee data by utilizing Google Sheets. This tool is designed to streamline the management of employee information and improve the efficiency of HR processes. 
 
-![start page ?different devices]()
+![Heroku](readme-docs/images/Heroku.png)
 
 ## Features
 There are 4 main features of the Employee Management System 
 
-![Four features](readme-docs/images/features.png)
+![Four features](readme-docs/images/Features.png)
 
 ### Add new employee data
 Option 1 allows the user to enter new employee forename, surname, email, telephone number, department, position, annual salary, and start date.
 
-![option 1 selected](assets/images/.png)
+![option 1](readme-docs/images/option1.png)
 
 With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Employee data added successfully'. Monthly salary is automatically calculated from the annual salary. The main options are then once again presented. 
 
-![Employee data added successfully](assets/images/.png)
+![data added successfully](readme-docs/images/success.png)
 
 If all the data points required are not entered in the correct format the user is informed with the message 'Data validation failed' and the main options are presented.
 
-![data validation failed](assets/images/.png)
+![data validation failed](readme-docs/images/invalid.png)
 
 ### Search for employee data
 Option 2 allows the user to search for a current employee by entering the employees ID.
 
-![option 2 selected](assets/images/.png)
+![option 2](readme-docs/images/option2.png)
 
 If an ID is not matched the user is informed with the message 'No matching was found for the ID' and the main options are presented.
 
-![No matching ID](assets/images/.png)
+![No matching ID](readme-docs/images/none.png)
 
 ### Edit employee data
-Option 3 allows the user to edit the data of a current employee after entering the employees ID.
+Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with example og format to enter data. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing success'.
 
-![option 3 selected](assets/images/.png)
+![option 3](readme-docs/images/editsuccess.png)
+
+
 
 ### Delete employee data
 Option 4 allows the user to delete the data of a current employee after entering the employees ID. The Google sheet is updated with the edited information.
 
-![option 4 selected](assets/images/.png)
-
-### Exit
-Option 5 allows the user to exit the program.
+![option 4 selected](readme-docs/images/)
 
 ## User Experience (UX)
 The software tool is designed to offer users a simple and efficient experience by enabling add, delete, search, and edit of employee data in a Google Sheet. To enhance user experience, the following features have been implemented:
