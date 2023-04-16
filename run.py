@@ -62,7 +62,6 @@ def get_employee_data():
     employee_data.append(round(monthly_salary, 2))
     # Call the add_employee function to add the employee data to the spredsheet
     add_employee('Sheet1', employee_data)
-    # print confirmation message to user that employee data has been added
     print("Employee data added successfully")
 
 
@@ -104,7 +103,7 @@ def search_employee_data():
     """
     Searches for employee data based on ID and prints the row if found
     """
-    # Prompt user to input ID to search for
+    # Prompt user to input ID for searching
     id = input("Enter the ID: ")
 
     # Open the Sheet1 worksheet and get all data
@@ -190,7 +189,6 @@ def main():
         print("2. Search for employee data")
         print("3. Edit employee data")
         print("4. Delete employee data")
-        # print("5. Exit")
 
         option = int(input("Please select one option: "))
 
@@ -206,5 +204,4 @@ def main():
             print("Invalid option selected. Please try again.")
 
 
-# Executions starts from the main function here
 main()

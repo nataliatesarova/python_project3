@@ -31,16 +31,14 @@ If an ID is not matched the user is informed with the message 'No matching was f
 ![No matching ID](readme-docs/images/none.png)
 
 ### Edit employee data
-Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with example og format to enter data. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing success'.
+Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with example og format to enter data. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing success'. Otherwise an error message is given.
 
 ![option 3](readme-docs/images/editsuccess.png)
 
-
-
 ### Delete employee data
-Option 4 allows the user to delete the data of a current employee after entering the employees ID. The Google sheet is updated with the edited information.
+Option 4 allows the user to delete the data of a current employee after entering the employees ID. If the ID is found the employee is deleted from the Google sheet and user is provided with confirmation message 'Row deleted'.
 
-![option 4 selected](readme-docs/images/)
+![option 4](readme-docs/images/delete.png)
 
 ## User Experience (UX)
 The software tool is designed to offer users a simple and efficient experience by enabling add, delete, search, and edit of employee data in a Google Sheet. To enhance user experience, the following features have been implemented:
@@ -56,7 +54,7 @@ Confirmation and error messages: Users receive confirmation messages when their 
 ![Flow Chart](readme-docs/images/Flowchart.png)
 
 ## Google Sheet
-The Python script interacts with a Google Sheet using the gspread library allowing the adding, deleting, editing and searching of employee data, in addition to calculating monthly salary. The program provides a basic user interface for interacting with the Sheet.
+The Python script interacts with a [Google Sheet](https://docs.google.com/spreadsheets/d/1BZB1oTjWcPVkBEoS4y_POWA-pKdTZbYmrg47M25pwfw/edit#gid=0) using the gspread library allowing the adding, deleting, editing and searching of employee data, in addition to calculating monthly salary. The program provides a basic user interface for interacting with the Sheet.
 
 ![Google Sheet](readme-docs/images/sheet.png)
 
@@ -65,9 +63,9 @@ The current code only allows searching for data based on the ID column. However,
 
 At present the code only validates the input data for the number of columns, but it does not perform any data validation checks on the content of each column. For instance, it does not verify whether the email address entered by the user is in a valid format. In a future version, data validation checks could be added for each column to ensure that the user's input data is accurate and reliable.
 
-A future version could include more detailed error messaging and interactive prompts to guide the user through the process.
+A future version could include more error messaging and interactive prompts to guide the user through the process. In any case the run program button allows a restart of the program if any invalid entry or error occurs.
 
-In a future iteration, incorporating HTML and CSS could enhance the program's usability by providing a user-friendly interface for users to interact with the program's functionality.
+In a future iteration, incorporating HTML and CSS could enhance the program's interface for users to interact with the program's functionality.
 
 ## Technologies Used
 ### Language
@@ -90,24 +88,13 @@ Python
 Extensive manual testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on validating user input and performing error checking to guarantee that the user is provided with appropriate feedback at all times.
 
 The user is welcomed to a menu of 4 options with clear instructions to choose a number, or restart the program with the run program button. If an invalid choose is inputted the user is returned with the message 'Invalid option selected. Please try again'.
-![Invalid option selected. Please try again.](readme-docs/images/.png)
 
 The get employee data function offers instructions on how to enter data, along with an example.
 
-![](readme-docs/images/.png)
-
 The validate data function was used to validate the data entered by the user. It checks if the number of columns entered is equal to 9. If the new employee is added or current employee edited correctly the user is returned with the confirmation message 'Employee data added successfully' and 'Editing success' respectively. 
 
-![Employee data added successfully](readme-docs/images/.png)
-![Editing success](readme-docs/images/.png)
-
 If the data entered is not in the correct format or the ID is not matched for search and editing the user is returned the message 'data validation failed' or "No matching data found" respectively, and presented with main options.
-
-![Data validation failed](readme-docs/images/.png)
-![No matching data found](readme-docs/images/.png)
  
-The application was tested on Google Chrome, Safari, Firefox and Microsoft Edge browsers without issues.
-
 ## Bugs
 An error was found with the editing and deleting of the last row of the sheet. The issue was caused by the use of range(1, len(data) - 1) in the for loop, which excluded the last row of the sheet. This problem was fixed by changing the range to range(1, len(data) + 1), which allowed the loop to iterate over all rows in the data list, including the last row. 
 
