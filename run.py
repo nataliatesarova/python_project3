@@ -23,9 +23,6 @@ def validate_data(data):
         if data_col_length != 9:
             raise Exception('Insufficient columns entered')
 
-        # data_id = data_list[0]
-        # data_phone = data_list[4]
-        # data_asalary = data_list[7]
     except Exception:
         return False
     return True
@@ -155,8 +152,6 @@ def edit_employee_data():
 
         dataset = input("Enter your data\n")
         employee_data = dataset.split(",")
-
-
         # Calculate the monthly salary of the employee
         value = employee_data[6]
         annual_salary = float(value)
@@ -206,6 +201,7 @@ def main():
             delete_employee()
         else:
             print("Invalid option selected. Please try again.")
+       
        
 # Executions starts from the main function here
 main()

@@ -86,12 +86,12 @@ Python
 * [Lucidchart](https://www.lucidchart.com/pages/tour) - Utilized to create the flow chart.
 * [Heroku](https://dashboard.heroku.com/apps) - used to deploy the application.
 
-## Testing
+## Testing and Validation
 [Code Institute Python Linter](https://pep8ci.herokuapp.com/#) - was used for validation to ensure no Python code errors.
 ![CIlinter](readme-docs/images/linter.png)
 
 ## Manual Testing
-Extensive testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on validating user input and performing error checking to guarantee that the user is provided with appropriate feedback at all times.
+Extensive manual testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on validating user input and performing error checking to guarantee that the user is provided with appropriate feedback at all times.
 
 The user is welcomed to a menu of 4 options with clear instructions to choose a number, or restart the program with the run program button. If an invalid choose is inputted the user is returned with the message 'Invalid option selected. Please try again'.
 ![Invalid option selected. Please try again.](readme-docs/images/.png)
@@ -114,15 +114,11 @@ The messages provide clarity and reduce uncertainty for the user.
 
 The application was tested on Google Chrome, Safari, Firefox and Microsoft Edge browsers without issues.
 
-## Validation
-
 ## Bugs
 Editing and deleting the last row
 
-## Terminal Compatibility
-The Employee Management System has been designed to be deployed and utilized on Heroku. The terminal template was specifically created by Code Institute to be compatible with the Heroku platform. It may not function properly on a local terminal due to differences in positioning and other technical aspects, even if the program's functionality remains unchanged. Therefore, it is recommended to use the system exclusively on the Heroku platform.
-
 ## Heroku Deployment
+The Employee Management System has been designed to be deployed and utilized on Heroku. The terminal template was specifically created by Code Institute to be compatible with the Heroku platform. It may not function properly on a local terminal due to differences in positioning and other technical aspects, even if the program's functionality remains unchanged. Therefore, it is recommended to use the system exclusively on the Heroku platform.
 
 * Fork or clone the repository from [GitHub](https://github.com/nataliatesarova/python_project3)
 * Create a new Heroku app by logging in to the Heroku account and clicking the "New" button in the dashboard.
@@ -131,10 +127,11 @@ The Employee Management System has been designed to be deployed and utilized on 
 * Link the Heroku app to the repository by going to the "Deploy" tab and selecting the GitHub deployment method. Then search for and connect the repository to Heroku.
 * Click on the "Deploy" button to start the deployment process.
 
-## Credits
+## Credits and Acknowledgements
 I would like to thank my mentor Rory Sheridan and all the tutors, teachers and student colleagues for help and advice on the project.
 
-## Content and media
-Instructions on how to use the forEach loop method was provided by free code camp.
+[Clarification on Elif Else statement](https://www.youtube.com/watch?v=Zp5MuPOtsSY), Programming with Mosh.
 
-Instructions on button enabling and disabling was provided by W3 schools.
+[Instruction on While True in Python](https://www.boardinfinity.com/blog/use-while-true-in-python/), Board Infinity
+
+[Instruction on Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html), Python
