@@ -60,25 +60,27 @@ Confirmation and error messages: Users receive confirmation messages when their 
 
 
 ## Google Sheet
-![Google Sheet](readme-docs/images/GoogleSheet.png)
+The Python script interacts with a Google Sheet using the gspread library allowing the adding, deleting, editing and searching of employee data, in addition to calculating monthly salary. The program provides a basic user interface for interacting with the Sheet.
+
+![Google Sheet](readme-docs/images/sheet.png)
 
 ## Future Features 
--The current code only allows searching for data based on the ID column. However, a future version could potentially enhance this functionality by enabling searching based on other parameters, such as name, email address, or department.
+The current code only allows searching for data based on the ID column. However, a future version could potentially enhance this functionality by enabling searching based on other parameters, such as name, email address, or department.
 
--The current code only validates the input data for the number of columns, but it does not perform any data validation checks on the content of each column. For instance, it does not verify whether the email address entered by the user is in a valid format. In a future version, data validation checks could be added for each column to ensure that the user's input data is accurate and reliable.
+At present the code only validates the input data for the number of columns, but it does not perform any data validation checks on the content of each column. For instance, it does not verify whether the email address entered by the user is in a valid format. In a future version, data validation checks could be added for each column to ensure that the user's input data is accurate and reliable.
 
--A future version could include more detailed error messaging and interactive prompts to guide the user through the process.
+A future version could include more detailed error messaging and interactive prompts to guide the user through the process.
 
--In a future iteration, incorporating HTML and CSS could enhance the program's usability by providing a user-friendly interface for users to interact with the program's functionality.
+In a future iteration, incorporating HTML and CSS could enhance the program's usability by providing a user-friendly interface for users to interact with the program's functionality.
 
 ## Technologies Used
 ### Language
 Python
 
 ### Frameworks, Libraries & Programs
-* Google sheets - used to store and manage program data.
-* Gspread - a python library that provides an interface to interact with Google. Sheets API.
-* Google Auth - utilized to grant the app permission to interact with Google Sheets.
+* [Google sheets](https://www.google.com/sheets/about/) - used to store and manage program data.
+* [Gspread](https://docs.gspread.org/en/v5.7.1/) - a python library that provides an interface to interact with Google. Sheets API.
+* Google Auth - a framework that provides a secure and easy way to enable the application to access Google APIs, such as Google Sheets API.
 * Gitpod - employed to develop, modify, and compile the code for the program.
 * Lucidchart - utilized for creating flow charts.
 * Heroku -  used to deploy the application.
@@ -88,7 +90,10 @@ Python
 ![CIlinter](readme-docs/images/linter.png)
 
 ## Manual Testing
-Extensive testing was performed on the application, with special emphasis placed on validating user input and performing error checking to guarantee that the user is provided with appropriate feedback at all times.
+Extensive testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on validating user input and performing error checking to guarantee that the user is provided with appropriate feedback at all times.
+
+The user is welcomed to a menu of 4 options with clear instructions to choose a number, or restart the program with the run program button. If an invalid choose is inputted the user is returned with the message 'Invalid option selected. Please try again'.
+![Invalid option selected. Please try again.](readme-docs/images/.png)
 
 The get employee data function offers instructions on how to enter data, along with an example.
 
@@ -99,12 +104,12 @@ The validate data function was used to validate the data entered by the user. It
 ![Employee data added successfully](readme-docs/images/.png)
 ![Editing success](readme-docs/images/.png)
 
-If the data entered is not in the correct format or the ID is not matched for editing the user is returned the message 'data validation failed' or "No matching data found" respectively, and presented with main options.
+If the data entered is not in the correct format or the ID is not matched for search and editing the user is returned the message 'data validation failed' or "No matching data found" respectively, and presented with main options.
 
 ![Data validation failed](readme-docs/images/.png)
 ![No matching data found](readme-docs/images/.png)
 
-These messages provide clarity and reduce uncertainty. 
+The messages provide clarity and reduce uncertainty for the user. 
 
 The application was tested on Google Chrome, Safari, Firefox and Microsoft Edge browsers without issues.
 
@@ -114,7 +119,7 @@ The application was tested on Google Chrome, Safari, Firefox and Microsoft Edge 
 Editing and deleting the last row
 
 ## Terminal Compatibility
-Birthday Book is to be used and deployed via Heroku, and the terminal template provided by Code Institute. It is not compatible with a local terminal as certain positioning would be affected, even if the functionality of the programme would be unaltered.
+The Employee Management System has been designed to be deployed and utilized on Heroku. The terminal template was specifically created by Code Institute to be compatible with the Heroku platform. It may not function properly on a local terminal due to differences in positioning and other technical aspects, even if the program's functionality remains unchanged. Therefore, it is recommended to use the system exclusively on the Heroku platform.
 
 ## Deployment
 Heroku

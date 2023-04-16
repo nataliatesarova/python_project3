@@ -184,13 +184,15 @@ def main():
     Main function with all business logic to control the difference options.
     Based on the option user selected, appropriate function will be called.
     """
-    print("Welcome to Employee Data System")
+    print("Welcome to Employee Data System.")
+    print("Choose a number from the menu and press enter.")
+    print("To restart press RUN PROGRAM.")
     while True:
         print("\n\n1. Add new employee data")
         print("2. Search for employee data")
         print("3. Edit employee data")
         print("4. Delete employee data")
-        print("5. Exit")
+        # print("5. Exit")
 
         option = int(input("Please select one option: "))
 
@@ -202,9 +204,8 @@ def main():
             edit_employee_data()
         elif option == 4:
             delete_employee()
-        elif option == 5:
-            break
-
-
+        else:
+            print("Invalid option selected. Please try again.")
+       
 # Executions starts from the main function here
 main()
