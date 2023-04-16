@@ -181,7 +181,7 @@ def main():
     Main function with all business logic to control the difference options.
     Based on the option user selected, appropriate function will be called.
     """
-    print("Welcome to Employee Data System.")
+    print("Welcome to Employee Management System.")
     print("Choose a number from the menu and press enter.")
     print("To restart press RUN PROGRAM.")
     while True:
