@@ -23,9 +23,9 @@ def valid_id(id):
     data = sheet.get_all_values()
 
     # Loop through the data rows and check if the ID matches
-    for i in range(1, len(data) + 1):
+    for i in range(1, len(data)):
         row = data[i]
-        if row[0] == id:
+        if row[0] == str(id):
             # If match found
             id_present = True
 
@@ -169,8 +169,21 @@ def add_employee_data():
     employee_data.append(round(monthly_salary, 2))
     # Call the add_employee function to add the employee data to the spredsheet
     add_employee('Sheet1', employee_data)
-    
+
     print("Employee data added successfully")
+
+def print_employee_data(row):
+    print("\n")
+    print("ID: " + row[0])
+    print("Forename: " + row[1])
+    print("Surname: " + row[2])
+    print("Email address: " + row[3])
+    print("Telephone Number: " + row[4])
+    print("Department: " + row[5])
+    print("Position: " + row[6])
+    print("Annual Salary: " + row[7])
+    print("Start date: " + row[8])
+    print("Monthly Salary: " + row[9])
 
 def search_employee_data():
     """
@@ -178,7 +191,7 @@ def search_employee_data():
     """
     # Prompt user to input ID for searching
     id = None
-    while not valid_id(id):
+    while id == None:
         id = str(input("Enter ID: ")).strip()
         try:
             id = int(id)
@@ -196,9 +209,9 @@ def search_employee_data():
 
     # Iterate through each row in data and check if ID matches
     for row in data[1:]:
-        if row[0] == id:
+        if row[0] == str(id):
             # print row data if ID matches
-            print(row)
+            print_employee_data(row)
             return
     # If no match found, print message
     print("No matching data was found for the ID")
@@ -209,7 +222,7 @@ def edit_employee_data():
     """
     # Get the ID of the employee to be edited
     id = None
-    while not valid_id(id):
+    while id == None:
         id = str(input("Enter ID to edit: ")).strip()
         try:
             id = int(id)
@@ -227,9 +240,9 @@ def edit_employee_data():
 
     editing_row = -1
     # Find the row to be edited
-    for i in range(1, len(data) + 1):
+    for i in range(1, len(data)):
         row = data[i]
-        if row[0] == id:
+        if row[0] == str(id):
             editing_row = i
             break
     if editing_row == -1:
@@ -258,8 +271,8 @@ def edit_employee_data():
         valid_number = False
         while not valid_number:
             number = str(input("Enter updated phone number: ")).strip()
+            valid_number = True
             if number != "":
-                valid_number = True
                 try:
                     number = int(number)
                 except:
@@ -278,8 +291,8 @@ def edit_employee_data():
         valid_salary = False
         while not valid_salary:
             salary = str(input("Enter updated annual salary: ")).strip()
+            valid_salary = True
             if salary != "":
-                valid_salary = True
                 try:
                     salary = float(salary)
                 except:
@@ -318,7 +331,7 @@ def delete_employee():
     """
     # Ask user for the employee ID to be deleted
     id = None
-    while not valid_id(id):
+    while id == None:
         id = str(input("Enter ID to delete: ")).strip()
         try:
             id = int(id)
@@ -335,9 +348,9 @@ def delete_employee():
     data = sheet.get_all_values()
 
     # Loop through the data rows and check if the ID matches
-    for i in range(1, len(data) + 1):
+    for i in range(1, len(data)):
         row = data[i]
-        if row[0] == id:
+        if row[0] == str(id):
             # If match found, delete the row and print message
             sheet.delete_rows(i + 1)
             print("Data deleted")
@@ -362,20 +375,22 @@ def main():
 
         try:
             option = int(input("Please select one option: "))
-            if option == 1:
-                add_employee_data()
-            elif option == 2:
-                search_employee_data()
-            elif option == 3:
-                edit_employee_data()
-            elif option == 4:
-                delete_employee()
-            elif option == 5:
-                break
-            else:
-                print("Invalid option selected. Please try again.")
         except:
             print("Invalid character. Please try again")
+            continue
+        
+        if option == 1:
+            add_employee_data()
+        elif option == 2:
+            search_employee_data()
+        elif option == 3:
+            edit_employee_data()
+        elif option == 4:
+            delete_employee()
+        elif option == 5:
+            break
+        else:
+            print("Invalid option selected. Please try again.")
 
 
 main()
