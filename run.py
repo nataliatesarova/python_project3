@@ -12,58 +12,63 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project3')
 
-
-def validate_data(data):
-    """
-     Validation check of input data
-    """
-    try:
-        data_list = data.split(',')
-        data_col_length = len(data_list)
-        if data_col_length != 9:
-            raise Exception('Insufficient columns entered')
-
-    except Exception:
+def valid_id(id):
+    if id == None:
         return False
+    
+    id_present = False
+
+    sheet = SHEET.worksheet('Sheet1')
+    # Get all the data in the sheet
+    data = sheet.get_all_values()
+
+    # Loop through the data rows and check if the ID matches
+    for i in range(1, len(data) + 1):
+        row = data[i]
+        if row[0] == id:
+            # If match found
+            id_present = True
+
+    if id_present:
+        print("ID already in use. Please try again")
+        return False
+    
     return True
 
+def empty_value(field_name, value):
+    if value == None:
+        return False
+    
+    if len(value) == 0:
+        print(field_name + " cannot be empty")
+        return False
+    
+    return True
 
-def get_employee_data():
-    """
-    function to get employee data from user input
-    """
-    # Prompt user to enter employee data
-    print("Please enter employee data.")
-    # Provide instructions on how to enter data
-    print("Enter data separated by comma in order of:\n"
-          "ID,Forename,Surname,Email,Telephone number,\n"
-          "Department,Position,Annual salary,Start date.")
-    print("Example:\n"
-          "10,Julian,Jones,julianjones@gmail.com,721878900,\n"
-          "Marketing,Marketing Agent,38400,1.9.2020\n")
-    # Get user input for employee data
-    data = input("Enter your data\n")
-    print('data is: ', data)
+def is_valid_email(email):
+    if "@" not in email or "." not in email:
+        return False
+    
+    return True
 
-    # Validate user input data
-    if (not validate_data(data)):
-        print('Data validation failed')
-        return
-
-    # Split the data by commas and store in list
-    employee_data = data.split(",")
-    # Extract the annual salary value from the list
-    value = employee_data[7]
-    # Convert annual salary value to float
-    annual_salary = float(value)
-    # Calculate monthly salary by dividing annual salary by 12
-    monthly_salary = annual_salary / 12
-    # Append the monthly salary value to the employee data list
-    employee_data.append(round(monthly_salary, 2))
-    # Call the add_employee function to add the employee data to the spredsheet
-    add_employee('Sheet1', employee_data)
-    print("Employee data added successfully")
-
+def valid_date(field_name, date):
+    if date == None:
+        return False
+    
+    if len(date) == 0:
+        print(field_name + " cannot be empty")
+        return False
+    
+    try:
+        date = date.split("/")
+        if len(date) != 3 or int(date[0]) < 1 or int(date[0]) > 31 or int(date[1]) < 1 or int(date[1]) > 12 or int(date[2]) < 1920 or int(date[2]) > 2023:
+            print("Invalid date. Please try again")
+            return False
+    except:
+        print("Invalid date. Please try again")
+        return False
+    
+    return True
 
 def add_employee(sheet_name, data):
     """
@@ -74,40 +79,119 @@ def add_employee(sheet_name, data):
     # Append a new row to the worksheet with the employee data
     sheet.append_row(data)
 
-
-def delete_employee():
+def add_employee_data():
     """
-    code to delete an employee from the sheet
+    function to add employee data from user input
     """
-    # Ask user for the employee ID to be deleted
-    id = input("Enter the ID to be deleted: ")
+    # Prompt user to enter employee data
+    employee_data = []
 
-    # Get the sheet
-    sheet = SHEET.worksheet('Sheet1')
-    # Get all the data in the sheet
-    data = sheet.get_all_values()
+    print("Please enter employee data.")
+    # Provide instructions on how to enter data
+    id = None
+    while not valid_id(id):
+        id = str(input("Enter ID: ")).strip()
+        try:
+            id = int(id)
+            if id < 1:
+                id = None
+                print("Invalid ID")
+        except:
+            id = None
+            print("Please enter a valid ID")
+    
+    employee_data.append(id)
 
-    # Loop through the data rows and check if the ID matches
-    for i in range(1, len(data) + 1):
-        row = data[i]
-        if row[0] == id:
-            # If match found, delete the row and print message
-            sheet.delete_rows(i + 1)
-            print("Row deleted")
-            return
-    # If no match found, print message
-    print("No matching row found")
+    forename = None
+    while not empty_value("Forename", forename):
+        forename = str(input("Enter forename: ")).strip()
+    
+    employee_data.append(forename)
 
+    surname = None
+    while not empty_value("Surname", surname):
+        surname = str(input("Enter surname: ")).strip()
+
+    employee_data.append(surname)
+
+    email = None
+    while not empty_value("Email address", email):
+        email = str(input("Enter email address: ")).strip()
+        if not is_valid_email(email):
+            email = None
+            print("Invalid email")
+
+    employee_data.append(email)
+
+    number = None
+    while number == None:
+        number = str(input("Enter phone number: ")).strip()
+        try:
+            number = int(number)
+        except:
+            number = None
+            print("Please enter a valid phone number")
+    
+    employee_data.append(number)
+    
+    department = None
+    while not empty_value("Department", department):
+        department = str(input("Enter department: ")).strip()
+    
+    employee_data.append(department)
+        
+    position = None
+    while not empty_value("Position", position):
+        position = str(input("Enter position: ")).strip()
+    
+    employee_data.append(position)
+
+    salary = None
+    while salary == None:
+        salary = str(input("Enter annual salary: ")).strip()
+        try:
+            salary = float(salary)
+        except:
+            salary = None
+            print("Please enter a valid salary")
+    
+    employee_data.append(salary)
+    
+    start_date = None
+    while not valid_date("Start Date", start_date):
+        start_date = str(input("Enter start date [format dd/mm/yyyy]: ")).strip()
+    
+    employee_data.append(start_date)
+
+    # Calculate monthly salary by dividing annual salary by 12
+    monthly_salary = salary / 12
+    # Append the monthly salary value to the employee data list
+    employee_data.append(round(monthly_salary, 2))
+    # Call the add_employee function to add the employee data to the spredsheet
+    add_employee('Sheet1', employee_data)
+    
+    print("Employee data added successfully")
 
 def search_employee_data():
     """
     Searches for employee data based on ID and prints the row if found
     """
     # Prompt user to input ID for searching
-    id = input("Enter the ID: ")
+    id = None
+    while not valid_id(id):
+        id = str(input("Enter ID: ")).strip()
+        try:
+            id = int(id)
+            if id < 1:
+                id = None
+                print("Invalid ID")
+        except:
+            id = None
+            print("Please enter a valid ID")
 
     # Open the Sheet1 worksheet and get all data
     sheet = SHEET.worksheet('Sheet1')
+    
     data = sheet.get_all_values()
 
     # Iterate through each row in data and check if ID matches
@@ -117,15 +201,24 @@ def search_employee_data():
             print(row)
             return
     # If no match found, print message
-    print("No matching was found for the ID")
-
+    print("No matching data was found for the ID")
 
 def edit_employee_data():
     """
     Code to edit the details of an existing employee
     """
     # Get the ID of the employee to be edited
-    id = input("Enter the ID to be edited: ")
+    id = None
+    while not valid_id(id):
+        id = str(input("Enter ID to edit: ")).strip()
+        try:
+            id = int(id)
+            if id < 1:
+                id = None
+                print("Invalid ID")
+        except:
+            id = None
+            print("Please enter a valid ID")
 
     # Get the worksheet 'Sheet1'
     sheet = SHEET.worksheet('Sheet1')
@@ -145,36 +238,112 @@ def edit_employee_data():
     else:
         # If a matching data is found
         # Get the details to be updated from the user
-        print("Enter data separated by comma in order of:\n"
-              "Forename,Surname,Email,Telephone number,\n"
-              "Department,Position,Annual salary,Start date.")
-        print("Example:\n"
-              "Julian,Jones,julianjones@gmail.com,721878900,\n"
-              "Marketing,Marketing Agent,38400,1.9.2020\n")
+        employee_data = []
+        employee_data.append(id)
 
-        dataset = input("Enter your data\n")
-        employee_data = dataset.split(",")
+        print("If you don't want to edit a data, please leave it empty by pressing enter key")
+
+        forename = str(input("Enter updated forename: ")).strip()        
+        employee_data.append(forename)
+
+        surname = str(input("Enter updated surname: ")).strip()
+        employee_data.append(surname)
+
+        email = str(input("Enter updated email address: ")).strip()
+        while email != "" and not is_valid_email(email):
+            email = str(input("Enter updated email address: ")).strip()
+        employee_data.append(email)
+
+        number = ""
+        valid_number = False
+        while not valid_number:
+            number = str(input("Enter updated phone number: ")).strip()
+            if number != "":
+                valid_number = True
+                try:
+                    number = int(number)
+                except:
+                    valid_number = False
+                    print("Please enter a valid phone number")
+        
+        employee_data.append(number)
+        
+        department = str(input("Enter updated department: ")).strip()
+        employee_data.append(department)
+
+        position = str(input("Enter updated position: ")).strip()
+        employee_data.append(position)
+
+        salary = ""
+        valid_salary = False
+        while not valid_salary:
+            salary = str(input("Enter updated annual salary: ")).strip()
+            if salary != "":
+                valid_salary = True
+                try:
+                    salary = float(salary)
+                except:
+                    valid_salary = False
+                    print("Please enter a valid salary")
+        
+        employee_data.append(salary)
+        
+        start_date = str(input("Enter updated start date [format dd/mm/yyyy]: ")).strip()
+        while start_date != "" and not valid_date("Start Date", start_date):
+            start_date = str(input("Enter updated start date [format dd/mm/yyyy]: ")).strip()
+        employee_data.append(start_date)
+
         # Calculate the monthly salary of the employee
-        value = employee_data[6]
-        annual_salary = float(value)
-        monthly_salary = annual_salary / 12
-        employee_data.append(round(monthly_salary, 2))
+        updated_monthly_salary = ""
+        if salary != "":
+            updated_monthly_salary = salary / 12
+            # Append the monthly salary value to the employee data list
+        if updated_monthly_salary == "":
+            employee_data.append(updated_monthly_salary)
+        else:
+            employee_data.append(round(updated_monthly_salary, 2))
 
         # Update the data in the worksheet
         sheet = SHEET.worksheet('Sheet1')
         editing_row = editing_row + 1
-        sheet.update_cell(editing_row, 2, employee_data[0])
-        sheet.update_cell(editing_row, 3, employee_data[1])
-        sheet.update_cell(editing_row, 4, employee_data[2])
-        sheet.update_cell(editing_row, 5, employee_data[3])
-        sheet.update_cell(editing_row, 6, employee_data[4])
-        sheet.update_cell(editing_row, 7, employee_data[5])
-        sheet.update_cell(editing_row, 8, employee_data[6])
-        sheet.update_cell(editing_row, 9, employee_data[7])
-        sheet.update_cell(editing_row, 10, employee_data[8])
+        for i in range(1, len(employee_data)):
+            if employee_data[i] != "":
+                sheet.update_cell(editing_row, (i + 1), employee_data[i])
 
         print("Editing success")
 
+def delete_employee():
+    """
+    code to delete an employee from the sheet
+    """
+    # Ask user for the employee ID to be deleted
+    id = None
+    while not valid_id(id):
+        id = str(input("Enter ID to delete: ")).strip()
+        try:
+            id = int(id)
+            if id < 1:
+                id = None
+                print("Invalid ID")
+        except:
+            id = None
+            print("Please enter a valid ID")
+
+    # Get the sheet
+    sheet = SHEET.worksheet('Sheet1')
+    # Get all the data in the sheet
+    data = sheet.get_all_values()
+
+    # Loop through the data rows and check if the ID matches
+    for i in range(1, len(data) + 1):
+        row = data[i]
+        if row[0] == id:
+            # If match found, delete the row and print message
+            sheet.delete_rows(i + 1)
+            print("Data deleted")
+            return
+    # If no match found, print message
+    print("No matching row found")
 
 def main():
     """
@@ -189,19 +358,24 @@ def main():
         print("2. Search for employee data")
         print("3. Edit employee data")
         print("4. Delete employee data")
+        print("5. Exit")
 
-        option = int(input("Please select one option: "))
-
-        if option == 1:
-            get_employee_data()
-        elif option == 2:
-            search_employee_data()
-        elif option == 3:
-            edit_employee_data()
-        elif option == 4:
-            delete_employee()
-        else:
-            print("Invalid option selected. Please try again.")
+        try:
+            option = int(input("Please select one option: "))
+            if option == 1:
+                add_employee_data()
+            elif option == 2:
+                search_employee_data()
+            elif option == 3:
+                edit_employee_data()
+            elif option == 4:
+                delete_employee()
+            elif option == 5:
+                break
+            else:
+                print("Invalid option selected. Please try again.")
+        except:
+            print("Invalid character. Please try again")
 
 
 main()
