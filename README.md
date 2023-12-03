@@ -1,34 +1,34 @@
 # Employee Management System
 The [Employee Management System](https://project3tesarova.herokuapp.com/) is a software application that provides users with an effective means of managing employee data by utilizing Google Sheets. This tool is designed to streamline the management of employee information and improve the efficiency of HR processes. 
 
-![Heroku](readme-docs/images/Heroku.png)
+![Heroku](readme-docs/images/mainmenu.png)
 
 ## Features
 There are 5 main features of the Employee Management System 
 
-![Five features](readme-docs/images/mainmenu.png)
+![Five features](readme-docs/images/features.png)
 
 ### Add new employee data
 Option 1 allows the user to enter new employee forename, surname, email, telephone number, department, position, annual salary, and start date.
 
-![option 1](readme-docs/images/option1.png)
+![option 1](readme-docs/images/optionone.png)
 
 With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Employee data added successfully'. Monthly salary is automatically calculated from the annual salary. The main options are then once again presented. 
 
-![data added successfully](readme-docs/images/success.png)
+![data added successfully](readme-docs/images/)
 
 If all the data points required are not entered in the correct format the user is informed with the message 'Data validation failed' and the main options are presented.
 
-![data validation failed](readme-docs/images/invalid.png)
+![data validation failed](readme-docs/images/)
 
 ### Search for employee data
 Option 2 allows the user to search for a current employee by entering the employees ID.
 
-![option 2](readme-docs/images/option2.png)
+![option 2](readme-docs/images/optiontwo.png)
 
 If an ID is not matched the user is informed with the message 'No matching was found for the ID' and the main options are presented.
 
-![No matching ID](readme-docs/images/none.png)
+![No matching ID](readme-docs/images/nomatchingdatafound.png)
 
 ### Edit employee data
 Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with example og format to enter data. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing success'. Otherwise an error message is given.
