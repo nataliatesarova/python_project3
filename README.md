@@ -17,10 +17,12 @@ With correct entry of the data the Google sheet is updated with the new employee
 
 If all the data points required are not entered in the correct format the user will be presented with a warning message and option to reenter the data correctly. For instance: ID already in use; empty field; '.' and '@' missing from email; date day less than 1 or greater than 31; '.' rather than '/' in date; 
 
-![](readme-docs/images/)
-![](readme-docs/images/)
-![](readme-docs/images/)
-![](readme-docs/images/)
+![ID already used](readme-docs/images/idused.png)
+![Empty field](readme-docs/images/emptyfield.png)
+![Invalid email](readme-docs/images/invalid_email.png)
+![Date greater than 31](readme-docs/images/date_greater31.png)
+![Invalid date](readme-docs/images/invaliddate.png)
+
 
 ### Search for employee data
 Option 2 allows the user to search for a current employee by entering the employees ID.
