@@ -17,35 +17,34 @@ With correct entry of the data the Google sheet is updated with the new employee
 
 If all the data points required are not entered in the correct format the user will be presented with a warning message and option to reenter the data correctly. For instance: ID already in use; empty field; '.' and '@' missing from email; date day less than 1 or greater than 31; '.' rather than '/' in date; 
 
-![data validation failed](readme-docs/images/)
+![](readme-docs/images/)
+![](readme-docs/images/)
+![](readme-docs/images/)
+![](readme-docs/images/)
 
 ### Search for employee data
 Option 2 allows the user to search for a current employee by entering the employees ID.
 
 ![option 2](readme-docs/images/optiontwo.png)
 
-If an ID is not matched the user is informed with the message 'No matching was found for the ID' and the main options are presented.
+If an ID is not matched the user is informed with the message 'No matching data was found for the ID' and the main options are presented.
 
-![No matching ID](readme-docs/images/nomatchingdatafound.png)
+![No matching ID](readme-docs/images/no_id.png)
 
 ### Edit employee data
-Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with example og format to enter data. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing success'. Otherwise an error message is given.
+Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with 'if you don't want to edit a data, please leave it empty by pressing enter key'. The user can then in effect scroll through the data points till the one required to be edited. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing success'.
 
-![option 3](readme-docs/images/.png)
+![option 3](readme-docs/images/option3.png)
 
 ### Delete employee data
-Option 4 allows the user to delete the data of a current employee after entering the employees ID. If the ID is found the employee is deleted from the Google sheet and user is provided with confirmation message 'Row deleted'.
+Option 4 allows the user to delete the data of a current employee after entering the employees ID. If the ID is found the employee is deleted from the Google sheet and user is provided with confirmation message 'Data deleted'.
 
-![option 4](readme-docs/images/.png)
+![option 4](readme-docs/images/option4.png)
 
 ## User Experience (UX)
-The software tool is designed to offer users a simple and efficient experience by enabling add, delete, search, and edit of employee data in a Google Sheet. To enhance user experience, the following features have been implemented:
+The software tool is designed to offer users a simple and efficient experience by enabling add, delete, search, and edit of employee data in a Google Sheet. To enhance user experience data validation prompts guide the user when data is inputed in incorrect format and prompts to renter the data correctly. An example of the correct date format is provided.
 
-Input validation: The validate_data() function checks that the user's input contains the correct number of columns and provides clear feedback on how to correct errors.
-
-Instructions for data entry: The get employee data function offers instructions on how to enter data, along with an example.
-
-Confirmation and error messages: Users receive confirmation messages when their actions are successful (e.g., adding an employee) and error messages when the ID does not match any data in the sheet. These messages provide clarity and reduce uncertainty. 
+Confirmation and error messages: Users receive confirmation messages when their actions are successful (e.g. adding an employee) and error messages when the ID does not match any data in the sheet. These messages provide clarity and reduce uncertainty. 
 
 ## Flow Chart
 
@@ -58,10 +57,6 @@ The Python script interacts with a [Google Sheet](https://docs.google.com/spread
 
 ## Future Features 
 The current code only allows searching for data based on the ID column. However, a future version could potentially enhance this functionality by enabling searching based on other parameters, such as name, email address, or department.
-
-At present the code only validates the input data for the number of columns, but it does not perform any data validation checks on the content of each column. For instance, it does not verify whether the email address entered by the user is in a valid format. In a future version, data validation checks could be added for each column to ensure that the user's input data is accurate and reliable.
-
-A future version could include more error messaging and interactive prompts to guide the user through the process. In any case the run program button allows a restart of the program if any invalid entry or error occurs.
 
 In a future iteration, incorporating HTML and CSS could enhance the program's interface for users to interact with the program's functionality.
 
