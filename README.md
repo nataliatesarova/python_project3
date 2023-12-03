@@ -4,9 +4,9 @@ The [Employee Management System](https://project3tesarova.herokuapp.com/) is a s
 ![Heroku](readme-docs/images/Heroku.png)
 
 ## Features
-There are 4 main features of the Employee Management System 
+There are 5 main features of the Employee Management System 
 
-![Four features](readme-docs/images/Features.png)
+![Five features](readme-docs/images/mainmenu.png)
 
 ### Add new employee data
 Option 1 allows the user to enter new employee forename, surname, email, telephone number, department, position, annual salary, and start date.
