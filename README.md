@@ -44,7 +44,7 @@ Option 4 allows the user to delete the data of a current employee after entering
 ## User Experience (UX)
 The software tool is designed to offer users a simple and efficient experience by enabling add, delete, search, and edit of employee data in a Google Sheet. To enhance user experience data validation prompts guide the user when data is inputed in incorrect format and prompts to renter the data correctly. An example of the correct date format is provided.
 
-Confirmation and error messages: Users receive confirmation messages when their actions are successful (e.g. adding an employee) and error messages when the ID does not match any data in the sheet. These messages provide clarity and reduce uncertainty. 
+Users receive confirmation messages when their actions are successful (e.g. adding or deleting an employee) and messages when the ID does not match any data in the sheet. These messages provide clarity and reduce uncertainty. 
 
 ## Flow Chart
 
@@ -56,7 +56,7 @@ The Python script interacts with a [Google Sheet](https://docs.google.com/spread
 ![Google Sheet](readme-docs/images/sheet.png)
 
 ## Future Features 
-The current code only allows searching for data based on the ID column. However, a future version could potentially enhance this functionality by enabling searching based on other parameters, such as name, email address, or department.
+The current code only allows searching for data based on the ID. However, a future version could potentially enhance this functionality by enabling searching based on other parameters, such as name, email address, or department.
 
 In a future iteration, incorporating HTML and CSS could enhance the program's interface for users to interact with the program's functionality.
 
@@ -80,9 +80,7 @@ Python
 ## Manual Testing
 Extensive manual testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on validating user input and performing error checking to guarantee that the user is provided with appropriate feedback at all times.
 
-The user is welcomed to a menu of 4 options with clear instructions to choose a number, or restart the program with the run program button. If an invalid choose is inputted the user is returned with the message 'Invalid option selected. Please try again'.
-
-The get employee data function offers instructions on how to enter data, along with an example.
+The user is welcomed to a menu of 5 options with clear instructions to choose a number, or restart the program with the run program button. If an invalid choose is inputted the user is returned with the message 'Invalid option selected. Please try again'.
 
 The validate data function was used to validate the data entered by the user. It checks if the number of columns entered is equal to 9. If the new employee is added or current employee edited correctly the user is returned with the confirmation message 'Employee data added successfully' and 'Editing success' respectively. 
 
