@@ -44,9 +44,18 @@ Option 4 allows the user to delete the data of a current employee after entering
 ![option 4](readme-docs/images/option4.png)
 
 ## User Experience (UX)
-The software tool is designed to offer users a simple and efficient experience by enabling add, delete, search, and edit of employee data in a Google Sheet. To enhance user experience data validation prompts guide the user when data is inputed in incorrect format and prompts to renter the data correctly. An example of the correct date format is provided.
 
-Users receive confirmation messages when their actions are successful (e.g. adding or deleting an employee) and messages when the ID does not match any data in the sheet. These messages provide clarity and reduce uncertainty. 
+The aim of our platform is to streamline employee management by storing and managing employee data efficiently in a Google Sheet. Our goal is to provide users such as HR managers and employees with a user-friendly interface to add, search, edit, and delete employee data securely in a centralized Google Sheet repository.
+
+As a user, I want to add a new employee's data including their ID, name, contact details, department, position, salary, and start date into a Google sheet.
+
+As a user, I want to search for an employee's data by entering their unique ID and view all their details stored in a Google sheet.
+
+As a user, I want to edit an existing employee's information, updating any necessary details such as their name, contact information, department, position, salary, or start date.
+
+As a user, I want to delete an employee's data from the system when they leave the company or if there's duplicate or erroneous information stored in the Google sheet.
+
+To enhance user experience data prompts appear if the user inputs data in an incorrect format and the user is instructed to enter the data correctly. An example of the correct date format is also provided to guide the user. Users receive confirmation messages when their actions are successful (e.g. adding or deleting an employee) and a message when the ID does not match any data in the sheet. These messages provide clarity and reduce uncertainty.
 
 ## Flow Chart
 
@@ -82,7 +91,7 @@ Python
 ## Manual Testing
 Extensive manual testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on validating user input and performing error checking to guarantee that the user is provided with appropriate feedback at all times.
 
-The user is welcomed to a menu of 5 options with clear instructions to choose a number, or restart the program with the run program button. If an invalid choose is inputted the user is returned with the message 'Invalid option selected. Please try again'.
+The user is welcomed to a menu of 4 options with clear instructions to choose a number, or restart the program with the run program button. If an invalid choice is inputted the user is returned with the message 'Invalid option selected. Please try again'.
 
 The validate data function was used to validate the data entered by the user. It checks if the number of columns entered is equal to 9. If the new employee is added or current employee edited correctly the user is returned with the confirmation message 'Employee data added successfully' and 'Editing success' respectively. 
 

@@ -371,7 +371,7 @@ def main():
         print("2. Search for employee data")
         print("3. Edit employee data")
         print("4. Delete employee data")
-        print("5. Exit")
+        # print("5. Exit")
 
         try:
             option = int(input("Please select one option: "))
@@ -387,8 +387,8 @@ def main():
             edit_employee_data()
         elif option == 4:
             delete_employee()
-        elif option == 5:
-            break
+        # elif option == 5:
+            # break
         else:
             print("Invalid option selected. Please try again.")
 
