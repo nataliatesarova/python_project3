@@ -117,8 +117,8 @@ All tests passed
 
 Delete Employee Data:
 
-Scenario 1: Delete an existing employee's data and confirm that their record is removed entirely from the Google Sheet.
-Scenario 2: Try deleting a non-existent employee ID and ensure the system handles it appropriately, displaying 'no matching row found'.
+Scenario 1: Delete an existing employee's data and confirm that their record is removed entirely from the Google Sheet, and 'Data deleted' displayed.
+Scenario 2: Try deleting a non-existent employee ID and ensure the system handles it appropriately, displaying 'No matching row found'.
 
 All tests passed
 
