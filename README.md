@@ -6,12 +6,12 @@ The [Employee Management System](https://project3tesarova.herokuapp.com/) is a s
 ## Features
 There are 4 main features of the Employee Management System 
 
-![Features](readme-docs/images/features.png)
+![Features](readme-docs/images/start.png)
 
 ### Add new employee data
 Option 1 allows the user to enter new employee forename, surname, email, telephone number, department, position, annual salary, and start date.
 
-![option 1](readme-docs/images/optionone.png)
+![option 1](readme-docs/images/menu.png)
 
 With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Employee data added successfully'. Monthly salary is automatically calculated from the annual salary. The main options are then once again presented. 
 
@@ -89,14 +89,39 @@ Python
 ![CIlinter](readme-docs/images/linter.png)
 
 ## Manual Testing
-Extensive manual testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on validating user input and performing error checking to guarantee that the user is provided with appropriate feedback at all times.
+Extensive manual testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on preventing the insertion of invalid or empty data, and ensuring user guidance if the user inputs invalid information.
 
-The user is welcomed to a menu of 4 options with clear instructions to choose a number, or restart the program with the run program button. If an invalid choice is inputted the user is returned with the message 'Invalid option selected. Please try again'.
+### User story testing
 
-The validate data function was used to validate the data entered by the user. It checks if the number of columns entered is equal to 9. If the new employee is added or current employee edited correctly the user is returned with the confirmation message 'Employee data added successfully' and 'Editing success' respectively. 
+Add New Employee:
 
-If the data entered is not in the correct format or the ID is not matched for search and editing the user is returned the message 'data validation failed' or "No matching data found" respectively, and presented with main options.
- 
+Scenario 1: Input valid data for a new employee (ID, name, contact details, department, etc.) and verify it's correctly added to the Google Sheet, and 'Employee data added successfully' displayed.
+Scenario 2: Attempt to add an employee with an existing ID and ensure the system rejects the addition, displaying 'Invalid option selected. Please try again'.
+Scenario 3: Try adding an employee with invalid or incomplete data (e.g., missing name, incorrect email format) and confirm the system prompts for valid information (e.g. forneame cannot be empty, invalid email, etc).
+
+All tests passed
+
+Search Employee Data:
+
+Scenario 1: Search for an existing employee by entering their valid ID and verify the system displays all their details accurately.
+Scenario 2: Search for a non-existent employee ID and ensure the system handles it properly, displaying 'No matching data was found for the ID'.
+
+All tests passed
+
+Edit Employee Data:
+
+Scenario 1: Update an existing employee's details (name, contact information, salary, etc.) and confirm the changes are accurately reflected in the Google Sheet, and 'Editing success' displayed.
+Scenario 2: Attempt to update an employee with invalid data and verify the system prevents the update, and allows the user to resubmit correct data.
+
+All tests passed
+
+Delete Employee Data:
+
+Scenario 1: Delete an existing employee's data and confirm that their record is removed entirely from the Google Sheet.
+Scenario 2: Try deleting a non-existent employee ID and ensure the system handles it appropriately, displaying 'no matching row found'.
+
+All tests passed
+
 ## Bugs
 An error was found with the editing and deleting of the last row of the sheet. The issue was caused by the use of range(1, len(data) - 1) in the for loop, which excluded the last row of the sheet. This problem was fixed by changing the range to range(1, len(data) + 1), which allowed the loop to iterate over all rows in the data list, including the last row. 
 
