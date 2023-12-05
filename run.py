@@ -12,6 +12,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project3')
 
+# Function to check ID is valid and not a duplicate
 def valid_id(id):
     if id == None:
         return False
@@ -35,6 +36,7 @@ def valid_id(id):
     
     return True
 
+# Function to ensure a value is not empty
 def empty_value(field_name, value):
     if value == None:
         return False
@@ -45,12 +47,14 @@ def empty_value(field_name, value):
     
     return True
 
+# Function to validate an email address
 def is_valid_email(email):
     if "@" not in email or "." not in email:
         return False
     
     return True
 
+# Function to validate a date format
 def valid_date(field_name, date):
     if date == None:
         return False
@@ -371,7 +375,6 @@ def main():
         print("2. Search for employee data")
         print("3. Edit employee data")
         print("4. Delete employee data")
-        # print("5. Exit")
 
         try:
             option = int(input("Please select one option: "))
@@ -387,8 +390,6 @@ def main():
             edit_employee_data()
         elif option == 4:
             delete_employee()
-        # elif option == 5:
-            # break
         else:
             print("Invalid option selected. Please try again.")
 
