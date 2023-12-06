@@ -121,6 +121,8 @@ Scenario 2: Try deleting a non-existent employee ID and ensure the system handle
 All tests passed
 
 ## Bugs
+The code has been fortified to handle exceptions and errors, particularly with input validation, data operations, and user interaction, to address potential issues and assist the user by providing informative messages.
+
 An error was found with the editing and deleting of the last row of the sheet. The issue was caused by the use of range(1, len(data) - 1) in the for loop, which excluded the last row of the sheet. This problem was fixed by changing the range to range(1, len(data) + 1), which allowed the loop to iterate over all rows in the data list, including the last row. 
 
 ## Heroku Deployment
