@@ -13,10 +13,12 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project3')
 
 # Function to check ID is valid and not a duplicate
+
+
 def valid_id(id):
     if id == None:
         return False
-    
+
     id_present = False
 
     sheet = SHEET.worksheet('Sheet1')
@@ -33,36 +35,42 @@ def valid_id(id):
     if id_present:
         print("ID already in use. Please try again")
         return False
-    
+
     return True
 
 # Function to ensure a value is not empty
+
+
 def empty_value(field_name, value):
     if value == None:
         return False
-    
+
     if len(value) == 0:
         print(field_name + " cannot be empty")
         return False
-    
+
     return True
 
 # Function to validate an email address
+
+
 def is_valid_email(email):
     if "@" not in email or "." not in email:
         return False
-    
+
     return True
 
 # Function to validate a date format
+
+
 def valid_date(field_name, date):
     if date == None:
         return False
-    
+
     if len(date) == 0:
         print(field_name + " cannot be empty")
         return False
-    
+
     try:
         date = date.split("/")
         if len(date) != 3 or int(date[0]) < 1 or int(date[0]) > 31 or int(date[1]) < 1 or int(date[1]) > 12 or int(date[2]) < 1920 or int(date[2]) > 2023:
@@ -71,8 +79,9 @@ def valid_date(field_name, date):
     except:
         print("Invalid date. Please try again")
         return False
-    
+
     return True
+
 
 def add_employee(sheet_name, data):
     """
@@ -82,6 +91,7 @@ def add_employee(sheet_name, data):
     sheet = SHEET.worksheet(sheet_name)
     # Append a new row to the worksheet with the employee data
     sheet.append_row(data)
+
 
 def add_employee_data():
     """
@@ -103,13 +113,13 @@ def add_employee_data():
         except:
             id = None
             print("Please enter a valid ID")
-    
+
     employee_data.append(id)
 
     forename = None
     while not empty_value("Forename", forename):
         forename = str(input("Enter forename: ")).strip()
-    
+
     employee_data.append(forename)
 
     surname = None
@@ -135,19 +145,19 @@ def add_employee_data():
         except:
             number = None
             print("Please enter a valid phone number")
-    
+
     employee_data.append(number)
-    
+
     department = None
     while not empty_value("Department", department):
         department = str(input("Enter department: ")).strip()
-    
+
     employee_data.append(department)
-        
+
     position = None
     while not empty_value("Position", position):
         position = str(input("Enter position: ")).strip()
-    
+
     employee_data.append(position)
 
     salary = None
@@ -158,13 +168,13 @@ def add_employee_data():
         except:
             salary = None
             print("Please enter a valid salary")
-    
+
     employee_data.append(salary)
-    
+
     start_date = None
     while not valid_date("Start Date", start_date):
         start_date = str(input("Enter start date [format dd/mm/yyyy]: ")).strip()
-    
+
     employee_data.append(start_date)
 
     # Calculate monthly salary by dividing annual salary by 12
@@ -175,6 +185,7 @@ def add_employee_data():
     add_employee('Sheet1', employee_data)
 
     print("Employee data added successfully")
+
 
 def print_employee_data(row):
     print("\n")
@@ -188,6 +199,7 @@ def print_employee_data(row):
     print("Annual Salary: " + row[7])
     print("Start date: " + row[8])
     print("Monthly Salary: " + row[9])
+
 
 def search_employee_data():
     """
@@ -208,7 +220,7 @@ def search_employee_data():
 
     # Open the Sheet1 worksheet and get all data
     sheet = SHEET.worksheet('Sheet1')
-    
+
     data = sheet.get_all_values()
 
     # Iterate through each row in data and check if ID matches
@@ -219,6 +231,7 @@ def search_employee_data():
             return
     # If no match found, print message
     print("No matching data was found for the ID")
+
 
 def edit_employee_data():
     """
@@ -260,7 +273,7 @@ def edit_employee_data():
 
         print("If you don't want to edit a data, please leave it empty by pressing enter key")
 
-        forename = str(input("Enter updated forename: ")).strip()        
+        forename = str(input("Enter updated forename: ")).strip()      
         employee_data.append(forename)
 
         surname = str(input("Enter updated surname: ")).strip()
@@ -282,9 +295,9 @@ def edit_employee_data():
                 except:
                     valid_number = False
                     print("Please enter a valid phone number")
-        
+    
         employee_data.append(number)
-        
+
         department = str(input("Enter updated department: ")).strip()
         employee_data.append(department)
 
@@ -302,9 +315,9 @@ def edit_employee_data():
                 except:
                     valid_salary = False
                     print("Please enter a valid salary")
-        
+
         employee_data.append(salary)
-        
+
         start_date = str(input("Enter updated start date [format dd/mm/yyyy]: ")).strip()
         while start_date != "" and not valid_date("Start Date", start_date):
             start_date = str(input("Enter updated start date [format dd/mm/yyyy]: ")).strip()
@@ -328,6 +341,7 @@ def edit_employee_data():
                 sheet.update_cell(editing_row, (i + 1), employee_data[i])
 
         print("Editing success")
+
 
 def delete_employee():
     """
@@ -362,6 +376,7 @@ def delete_employee():
     # If no match found, print message
     print("No matching row found")
 
+
 def main():
     """
     Main function with all business logic to control the difference options.
@@ -381,7 +396,7 @@ def main():
         except:
             print("Invalid character. Please try again")
             continue
-        
+
         if option == 1:
             add_employee_data()
         elif option == 2:
