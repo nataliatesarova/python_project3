@@ -1,12 +1,10 @@
 # Employee Management System
 The [Employee Management System](https://project3tesarova.herokuapp.com/) is a software application that provides users with an effective means of managing employee data by utilizing Google Sheets. This tool is designed to streamline the management of employee information and improve the efficiency of HR processes. 
 
-![Heroku](readme-docs/images/mainmenu.png)
+![Heroku](readme-docs/images/mainpage.png)
 
 ## Features
 There are 4 main features of the Employee Management System 
-
-![Features](readme-docs/images/start.png)
 
 ### Add new employee data
 Option 1 allows the user to enter new employee forename, surname, email, telephone number, department, position, annual salary, and start date.
