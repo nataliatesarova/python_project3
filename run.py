@@ -83,6 +83,21 @@ def valid_date(field_name, date):
     return True
 
 
+def is_valid_phone_number(number):
+    # Strip any spaces for a cleaner validation
+    number_stripped = number.replace(" ", "")
+    
+    if not number_stripped.isdigit():
+        print("Phone number must contain only digits.")
+        return False
+
+    if len(number_stripped) < 7:
+        print("Phone number must be at least 7 digits.")
+        return False
+
+    return True
+
+
 def add_employee(sheet_name, data):
     """
     code to add a new employee into the sheet
@@ -138,14 +153,13 @@ def add_employee_data():
     employee_data.append(email)
 
     number = None
-    while number == None:
-        number = str(input("Enter phone number: ")).strip()
-        try:
-            number = int(number)
-        except:
-            number = None
-            print("Please enter a valid phone number")
-
+    while number is None:
+        number_input = input("Enter phone number: ").strip()
+        if is_valid_phone_number(number_input):
+            number = number_input # Validated phone number
+        else:
+            number = None # Keep asking if the validation fails
+            
     employee_data.append(number)
 
     department = None
