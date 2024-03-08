@@ -128,6 +128,19 @@ def get_valid_input(prompt, field_name):
             print(e)
 
 
+# Function for validated salary input
+def get_valid_salary(prompt):
+    while True:
+        salary_input = input(prompt).strip().replace(',', '.')
+        try:
+            salary = float(salary_input)
+            if salary <= 0:
+                raise ValueError("Salary must be a positive number greater than 0.")
+            return salary
+        except ValueError:
+            print("Invalid entry. Please use a valid number format, without any characters or commas.")
+
+
 def add_employee_data():
     """
     function to add employee data from user input
@@ -183,15 +196,7 @@ def add_employee_data():
     position = get_valid_input("Enter position: ", "Position")
     employee_data.append(position)
 
-    salary = None
-    while salary == None:
-        salary = str(input("Enter annual salary: ")).strip()
-        try:
-            salary = float(salary)
-        except:
-            salary = None
-            print("Please enter a valid salary")
-
+    salary = get_valid_salary("Enter annual salary: ")
     employee_data.append(salary)
 
     start_date = None
