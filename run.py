@@ -50,10 +50,13 @@ def empty_value(field_name, value):
 
 # Function to validate an email address
 def is_valid_email(email):
-    if "@" not in email or "." not in email:
+    # Regular expression pattern for validating an email address, disallowing consecutive dots
+    email_pattern = r'^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if re.match(email_pattern, email):
+        return True
+    else:
+        print("Invalid email format. Please enter a valid email address.")
         return False
-
-    return True
 
 # Function to validate a date format
 def valid_date(field_name, date):
@@ -67,7 +70,7 @@ def valid_date(field_name, date):
             len(date) != 3 or
             int(date[0]) < 1 or int(date[0]) > 31 or
             int(date[1]) < 1 or int(date[1]) > 12 or
-            int(date[2]) < 1920 or int(date[2]) > 2023
+            int(date[2]) < 1920 or int(date[2]) > 2024
         ):
             print("Invalid date. Please try again")
             return False
