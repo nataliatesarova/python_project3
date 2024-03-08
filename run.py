@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import re
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -13,8 +14,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project3')
 
 # Function to check ID is valid and not a duplicate
-
-
 def valid_id(id):
     if id == None:
         return False
@@ -39,8 +38,6 @@ def valid_id(id):
     return True
 
 # Function to ensure a value is not empty
-
-
 def empty_value(field_name, value):
     if value == None:
         return False
@@ -52,8 +49,6 @@ def empty_value(field_name, value):
     return True
 
 # Function to validate an email address
-
-
 def is_valid_email(email):
     if "@" not in email or "." not in email:
         return False
@@ -61,25 +56,24 @@ def is_valid_email(email):
     return True
 
 # Function to validate a date format
-
-
 def valid_date(field_name, date):
-    if date == None:
+    if date is None or not date.strip():
+        print(f"{field_name} cannot be empty")
         return False
-
-    if len(date) == 0:
-        print(field_name + " cannot be empty")
-        return False
-
     try:
         date = date.split("/")
-        if len(date) != 3 or int(date[0]) < 1 or int(date[0]) > 31 or int(date[1]) < 1 or int(date[1]) > 12 or int(date[2]) < 1920 or int(date[2]) > 2023:
+        if (
+            
+            len(date) != 3 or
+            int(date[0]) < 1 or int(date[0]) > 31 or
+            int(date[1]) < 1 or int(date[1]) > 12 or
+            int(date[2]) < 1920 or int(date[2]) > 2023
+        ):
             print("Invalid date. Please try again")
             return False
-    except:
-        print("Invalid date. Please try again")
+    except ValueError:
+        print("Invalid date format. Please use DD/MM/YYYY")
         return False
-
     return True
 
 
@@ -96,7 +90,7 @@ def is_valid_phone_number(number):
         return False
 
     return True
-
+        
 
 def add_employee(sheet_name, data):
     """
@@ -108,6 +102,32 @@ def add_employee(sheet_name, data):
     sheet.append_row(data)
 
 
+# Function to check for invalid characters
+def contains_invalid_characters(input_str):
+    """
+    Check if the input string contains any special characters
+    """
+    if re.search(r'[!@#$%^&*()+=\[\]{};:\'"\\|,.<>/?]', input_str):
+        return True
+    else:
+        return False
+
+
+# Function for getting validated input
+def get_valid_input(prompt, field_name):
+    """
+    Repeatedly ask for input until it does not contain invalid characters
+    """
+    while True:
+        user_input = input(prompt).strip()
+        try:
+            if contains_invalid_characters(user_input):
+                raise ValueError(f"The {field_name} cannot contain special characters.")
+            return user_input
+        except ValueError as e:
+            print(e)
+
+
 def add_employee_data():
     """
     function to add employee data from user input
@@ -116,7 +136,8 @@ def add_employee_data():
     employee_data = []
 
     print("Please enter employee data.")
-    # Provide instructions on how to enter data. ID must be unique, positive integer greater than 0
+    # Provide instructions on how to enter data.
+    # ID must be unique, positive integer greater than 0
     id = None
     while not valid_id(id):
         id = str(input("Enter ID: ")).strip()
@@ -131,16 +152,10 @@ def add_employee_data():
 
     employee_data.append(id)
 
-    forename = None
-    while not empty_value("Forename", forename):
-        forename = str(input("Enter forename: ")).strip()
-
+    forename = get_valid_input("Enter forename: ", "Forename")
     employee_data.append(forename)
 
-    surname = None
-    while not empty_value("Surname", surname):
-        surname = str(input("Enter surname: ")).strip()
-
+    surname = get_valid_input("Enter surname: ", "Surname")
     employee_data.append(surname)
 
     email = None
@@ -162,16 +177,10 @@ def add_employee_data():
             
     employee_data.append(number)
 
-    department = None
-    while not empty_value("Department", department):
-        department = str(input("Enter department: ")).strip()
-
+    department = get_valid_input("Enter department: ", "Department")
     employee_data.append(department)
 
-    position = None
-    while not empty_value("Position", position):
-        position = str(input("Enter position: ")).strip()
-
+    position = get_valid_input("Enter position: ", "Position")
     employee_data.append(position)
 
     salary = None
