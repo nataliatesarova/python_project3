@@ -116,6 +116,16 @@ def contains_invalid_characters(input_str):
         return False
 
 
+def contains_digits(input_str):
+    """
+    Check if the input string contains any digits
+    """
+    if re.search(r'[0123456789]', input_str):
+        return True
+    else:
+        return False
+
+
 # Function for getting validated input
 def get_valid_input(prompt, field_name):
     """
@@ -126,6 +136,9 @@ def get_valid_input(prompt, field_name):
         try:
             if contains_invalid_characters(user_input):
                 raise ValueError(f"The {field_name} cannot contain special characters.")
+            
+            if contains_digits(user_input) and field_name != 'Department' and field_name !=  'Position':
+                raise ValueError(f"The {field_name} cannot contain digits.")
             return user_input
         except ValueError as e:
             print(e)
