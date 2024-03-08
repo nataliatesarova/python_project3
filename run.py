@@ -6,16 +6,17 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project3')
 
+
 # Function to check ID is valid and not a duplicate
 def valid_id(id):
-    if id == None:
+    if id is None:
         return False
 
     id_present = False
@@ -37,9 +38,10 @@ def valid_id(id):
 
     return True
 
+
 # Function to ensure a value is not empty
 def empty_value(field_name, value):
-    if value == None:
+    if value is None:
         return False
 
     if len(value) == 0:
@@ -48,15 +50,17 @@ def empty_value(field_name, value):
 
     return True
 
+
 # Function to validate an email address
 def is_valid_email(email):
-    # Regular expression pattern for validating an email address, disallowing consecutive dots
-    email_pattern = r'^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    if re.match(email_pattern, email):
+    # Regular expression pattern for validating an email address
+    pattern = r'^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if re.match(pattern, email):
         return True
     else:
         print("Invalid email format. Please enter a valid email address.")
         return False
+
 
 # Function to validate a date format
 def valid_date(field_name, date):
@@ -66,11 +70,11 @@ def valid_date(field_name, date):
     try:
         date = date.split("/")
         if (
-            
-            len(date) != 3 or
-            int(date[0]) < 1 or int(date[0]) > 31 or
-            int(date[1]) < 1 or int(date[1]) > 12 or
-            int(date[2]) < 1920 or int(date[2]) > 2024
+
+                len(date) != 3 or
+                int(date[0]) < 1 or int(date[0]) > 31 or
+                int(date[1]) < 1 or int(date[1]) > 12 or
+                int(date[2]) < 1920 or int(date[2]) > 2024
         ):
             print("Invalid date. Please try again")
             return False
@@ -83,7 +87,7 @@ def valid_date(field_name, date):
 def is_valid_phone_number(number):
     # Strip any spaces for a cleaner validation
     number_stripped = number.replace(" ", "")
-    
+
     if not number_stripped.isdigit():
         print("Phone number must contain only digits.")
         return False
@@ -93,7 +97,7 @@ def is_valid_phone_number(number):
         return False
 
     return True
-        
+
 
 def add_employee(sheet_name, data):
     """
@@ -135,9 +139,9 @@ def get_valid_input(prompt, field_name):
         user_input = input(prompt).strip()
         try:
             if contains_invalid_characters(user_input):
-                raise ValueError(f"The {field_name} cannot contain special characters.")
-            
-            if contains_digits(user_input) and field_name != 'Department' and field_name !=  'Position':
+                raise ValueError(f"Special characters are not allowed.")
+            condition = field_name != 'Department' and field_name != 'Position'
+            if contains_digits(user_input) and condition:
                 raise ValueError(f"The {field_name} cannot contain digits.")
             return user_input
         except ValueError as e:
@@ -151,10 +155,10 @@ def get_valid_salary(prompt):
         try:
             salary = float(salary_input)
             if salary <= 0:
-                raise ValueError("Salary must be a positive number greater than 0.")
+                raise ValueError("Salary must be greater than 0.")
             return salary
         except ValueError:
-            print("Invalid entry. Please use a valid number format, without any characters or commas.")
+            print("Use a valid number format, without characters or commas.")
 
 
 def add_employee_data():
@@ -175,7 +179,7 @@ def add_employee_data():
             if id < 0:
                 id = None
                 print("Invalid ID. ID should be greater than 0")
-        except:
+        except e:
             id = None
             print("Please enter a valid ID")
 
@@ -200,10 +204,10 @@ def add_employee_data():
     while number is None:
         number_input = input("Enter phone number: ").strip()
         if is_valid_phone_number(number_input):
-            number = number_input # Validated phone number
+            number = number_input  # Validated phone number
         else:
-            number = None # Keep asking if the validation fails
-            
+            number = None  # Keep asking if the validation fails
+
     employee_data.append(number)
 
     department = get_valid_input("Enter department: ", "Department")
@@ -217,7 +221,7 @@ def add_employee_data():
 
     start_date = None
     while not valid_date("Start Date", start_date):
-        start_date = str(input("Enter start date [format dd/mm/yyyy]: ")).strip()
+        start_date = str(input("Enter start date [dd/mm/yyyy]: ")).strip()
 
     employee_data.append(start_date)
 
@@ -251,14 +255,14 @@ def search_employee_data():
     """
     # Prompt user to input ID for searching
     id = None
-    while id == None:
+    while id is None:
         id = str(input("Enter ID: ")).strip()
         try:
             id = int(id)
             if id < 1:
                 id = None
                 print("Invalid ID")
-        except:
+        except e:
             id = None
             print("Please enter a valid ID")
 
@@ -283,14 +287,14 @@ def edit_employee_data():
     """
     # Get the ID of the employee to be edited
     id = None
-    while id == None:
+    while id is None:
         id = str(input("Enter ID to edit: ")).strip()
         try:
             id = int(id)
             if id < 1:
                 id = None
                 print("Invalid ID")
-        except:
+        except e:
             id = None
             print("Please enter a valid ID")
 
@@ -315,9 +319,9 @@ def edit_employee_data():
         employee_data = []
         employee_data.append(id)
 
-        print("If you don't want to edit a data, please leave it empty by pressing enter key")
+        print("If no data edited, leave it empty by pressing enter key")
 
-        forename = str(input("Enter updated forename: ")).strip()      
+        forename = str(input("Enter updated forename: ")).strip()
         employee_data.append(forename)
 
         surname = str(input("Enter updated surname: ")).strip()
@@ -336,10 +340,10 @@ def edit_employee_data():
             if number != "":
                 try:
                     number = int(number)
-                except:
+                except e:
                     valid_number = False
                     print("Please enter a valid phone number")
-    
+
         employee_data.append(number)
 
         department = str(input("Enter updated department: ")).strip()
@@ -356,15 +360,15 @@ def edit_employee_data():
             if salary != "":
                 try:
                     salary = float(salary)
-                except:
+                except e:
                     valid_salary = False
                     print("Please enter a valid salary")
 
         employee_data.append(salary)
 
-        start_date = str(input("Enter updated start date [format dd/mm/yyyy]: ")).strip()
+        start_date = str(input("Enter start date [dd/mm/yyyy]: ")).strip()
         while start_date != "" and not valid_date("Start Date", start_date):
-            start_date = str(input("Enter updated start date [format dd/mm/yyyy]: ")).strip()
+            start_date = str(input("Enter start date [dd/mm/yyyy]: ")).strip()
         employee_data.append(start_date)
 
         # Calculate the monthly salary of the employee
@@ -393,14 +397,14 @@ def delete_employee():
     """
     # Ask user for the employee ID to be deleted
     id = None
-    while id == None:
+    while id is None:
         id = str(input("Enter ID to delete: ")).strip()
         try:
             id = int(id)
             if id < 1:
                 id = None
                 print("Invalid ID")
-        except:
+        except e:
             id = None
             print("Please enter a valid ID")
 
@@ -437,7 +441,7 @@ def main():
 
         try:
             option = int(input("Please select one option: "))
-        except:
+        except e:
             print("Invalid character. Please try again")
             continue
 
