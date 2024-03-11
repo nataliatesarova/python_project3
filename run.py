@@ -440,9 +440,12 @@ def main():
         print("4. Delete employee data")
 
         try:
-            option = int(input("Please select one option: "))
-        except e:
-            print("Invalid character. Please try again")
+            option = input("Please select one option: ")
+            if not option.isdigit():
+                raise ValueError("Please enter a number.")
+            option = int(option)
+        except ValueError as e:
+            print(f"Invalid input: {e}")
             continue
 
         if option == 1:
