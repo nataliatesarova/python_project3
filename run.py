@@ -1,3 +1,6 @@
+"""
+Imports
+"""
 import re
 import gspread
 from google.oauth2.service_account import Credentials
@@ -17,6 +20,7 @@ SHEET = GSPREAD_CLIENT.open('project3')
 
 # Function to check ID is valid and not a duplicate
 def valid_id(id):
+    """Validate that an ID is not None and not already used in Sheet1."""
     if id is None:
         return False
 
@@ -42,6 +46,7 @@ def valid_id(id):
 
 # Function to ensure a value is not empty
 def empty_value(field_name, value):
+    """Return False and report if 'value' is None or empty, True otherwise."""
     if value is None:
         return False
 
@@ -54,6 +59,7 @@ def empty_value(field_name, value):
 
 # Function to validate an email address
 def is_valid_email(email):
+    """Return True if 'email' is a valid email address, False otherwise."""
     # Regular expression pattern for validating an email address
     pattern = r'^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     if re.match(pattern, email):
@@ -65,6 +71,7 @@ def is_valid_email(email):
 
 # Function to validate a date format
 def valid_date(field_name, date):
+    """Checks date validity in DD/MM/YYYY format and year range 1920-2024."""
     if date is None or not date.strip():
         print(f"{field_name} cannot be empty")
         return False
@@ -86,6 +93,10 @@ def valid_date(field_name, date):
 
 
 def is_valid_phone_number(number):
+    """
+    Checks if the phone number is all digits and at least 7 characters long.
+    Returns False if these conditions are not met.
+    """
     # Strip any spaces for a cleaner validation
     number_stripped = number.replace(" ", "")
 
@@ -151,6 +162,11 @@ def get_valid_input(prompt, field_name):
 
 # Function for validated salary input
 def get_valid_salary(prompt):
+    """
+    Prompt for and return a valid, positive salary amount.
+
+    Converts input commas to dots and checks for positive float value.
+    """
     while True:
         salary_input = input(prompt).strip().replace(',', '.')
         try:
@@ -237,6 +253,9 @@ def add_employee_data():
 
 
 def print_employee_data(row):
+    """
+    Display formatted employee data.
+    """
     print("\n")
     print("ID: " + row[0])
     print("Forename: " + row[1])
