@@ -84,7 +84,7 @@ Python
 
 ## Testing and Validation
 [Code Institute Python Linter](https://pep8ci.herokuapp.com/#) - was used for validation to ensure no Python code errors.
-![CIlinter](readme-docs/images/linter.png)
+![CIlinter](readme-docs/images/Linter.png)
 
 ## Manual Testing
 Extensive manual testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on preventing the insertion of invalid or empty data, and ensuring user guidance if the user inputs invalid information.

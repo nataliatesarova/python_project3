@@ -308,14 +308,17 @@ def edit_employee_data():
     # Get the ID of the employee to be edited
     id = None
     while id is None:
-        id = str(input("Enter ID to edit: ")).strip()
+        id_input = input("Enter ID to edit: ").strip()
+        if not id_input:
+            print("ID cannot be empty.")
+            continue
         try:
-            id = int(id)
+            id = int(id_input)
             if id < 1:
-                id = None
-                print("Invalid ID")
-        except e:
-            id = None
+                print("Invalid ID.")
+                continue
+            break  # ID is valid, exit the loop
+        except ValueError:
             print("Please enter a valid ID")
 
     # Get the worksheet 'Sheet1'
@@ -341,55 +344,134 @@ def edit_employee_data():
 
         print("If no data edited, leave it empty by pressing enter key")
 
-        forename = str(input("Enter updated forename: ")).strip()
-        employee_data.append(forename)
+        # Prompt the user for updated forename
+        while True:
+            forename = input("Enter updated forename: ").strip()
+            if not forename:
+                # No input was given, forename remains unchanged
+                print("No changes made to forename.")
+                break
+            # Validate forename (only letters allowed)
+            if not re.match(r'^[a-zA-Z]+$', forename):
+                print("Invalid forename. Only letters are allowed.")
+                continue
+            # Forename is valid, append it to the list
+            employee_data.append(forename)
+            break
 
-        surname = str(input("Enter updated surname: ")).strip()
-        employee_data.append(surname)
+        # Prompt the user for updated surname
+        while True:
+            surname = input("Enter updated surname: ").strip()
+            if not surname:
+                # No input was given, surname remains unchanged
+                print("No changes made to surname.")
+                break
+            # Validate surname (only letters allowed)
+            if not re.match(r'^[a-zA-Z]+$', surname):
+                print("Invalid surname. Only letters are allowed.")
+                continue
+            # Surname is valid, append it to the list
+            employee_data.append(surname)
+            break
 
-        email = str(input("Enter updated email address: ")).strip()
-        while email != "" and not is_valid_email(email):
-            email = str(input("Enter updated email address: ")).strip()
-        employee_data.append(email)
+        # Prompt the user for updated email
+        while True:
+            email = input("Enter updated email address: ").strip()
+            if not email:
+                # No input was given, email remains unchanged
+                print("No changes made to email.")
+                break
+            # Validate email format
+            if not re.match(r'^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
+                print("Invalid email format. Please enter a valid email address.")
+                continue
+            # Email is valid, append it to the list
+            employee_data.append(email)
+            break
 
-        number = ""
-        valid_number = False
-        while not valid_number:
-            number = str(input("Enter updated phone number: ")).strip()
-            valid_number = True
-            if number != "":
-                try:
-                    number = int(number)
-                except e:
-                    valid_number = False
-                    print("Please enter a valid phone number")
+        # Prompt the user for updated phone number
+        while True:
+            number = input("Enter updated phone number: ").strip()
+            if not number:
+                # No input was given, phone number remains unchanged
+                print("No changes made to phone number.")
+                break
+            # Validate phone number (only digits and at least 7 characters long)
+            number_stripped = number.replace(" ", "")
+            if not number_stripped.isdigit():
+                print("Phone number must contain only digits.")
+                continue
+            if len(number_stripped) < 7:
+                print("Phone number must be at least 7 digits.")
+                continue
+            # Phone number is valid, append it to the list
+            employee_data.append(number)
+            break
 
-        employee_data.append(number)
+        # Prompt the user to enter the updated department until a valid input is provided
+        while True:
+            department = str(input("Enter updated department: ")).strip()
+            if not department:
+                # No input was given, department remains unchanged
+                print("No changes made to department.")
+                break
+            elif contains_invalid_characters(department):
+                # Department contains invalid characters
+                print("Department cannot contain special characters.")
+            else:
+                # Department is valid, append it to the list
+                employee_data.append(department)
+                break
 
-        department = str(input("Enter updated department: ")).strip()
-        employee_data.append(department)
+        # Prompt the user to enter the updated position until a valid input is provided
+        while True:
+            position = str(input("Enter updated position: ")).strip()
+            if not position:
+                # No input was given, position remains unchanged
+                print("No changes made to position.")
+                break
+            elif contains_invalid_characters(position):
+                # Position contains invalid characters
+                print("Position cannot contain special characters.")
+            else:
+                # Position is valid, append it to the list
+                employee_data.append(position)
+                break
 
-        position = str(input("Enter updated position: ")).strip()
-        employee_data.append(position)
+        salary = None
+        while True:
+            # Prompt the user to enter the updated annual salary
+            salary_input = input("Enter updated annual salary: ").strip()
+            if not salary_input:
+                # No input was given, salary remains unchanged
+                print("No changes made to salary.")
+                break
+            # Validate salary
+            try:
+                salary = float(salary_input.replace(',', '.'))
+                if salary <= 0:
+                    print("Salary must be greater than 0.")
+                    continue
+                # Salary is valid, append it to the list
+                employee_data.append(salary)
+                break
+            except ValueError:
+                print("Use a valid number format, without characters or commas.")
 
-        salary = ""
-        valid_salary = False
-        while not valid_salary:
-            salary = str(input("Enter updated annual salary: ")).strip()
-            valid_salary = True
-            if salary != "":
-                try:
-                    salary = float(salary)
-                except e:
-                    valid_salary = False
-                    print("Please enter a valid salary")
-
-        employee_data.append(salary)
-
-        start_date = str(input("Enter start date [dd/mm/yyyy]: ")).strip()
-        while start_date != "" and not valid_date("Start Date", start_date):
-            start_date = str(input("Enter start date [dd/mm/yyyy]: ")).strip()
-        employee_data.append(start_date)
+        # Prompt the user to enter the updated start date until a valid input is provided
+        while True:
+            start_date = input("Enter updated start date [dd/mm/yyyy]: ").strip()
+            if not start_date:
+                # No input was given, start date remains unchanged
+                print("No changes made to start date.")
+                break
+            elif not valid_date("Start Date", start_date):
+                # Invalid start date format
+                continue
+            else:
+                # Start date is valid, append it to the list
+                employee_data.append(start_date)
+                break
 
         # Calculate the monthly salary of the employee
         updated_monthly_salary = ""
