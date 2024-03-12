@@ -139,7 +139,7 @@ def get_valid_input(prompt, field_name):
         user_input = input(prompt).strip()
         try:
             if contains_invalid_characters(user_input):
-                raise ValueError(f"Special characters are not allowed.")
+                raise ValueError("Special characters are not allowed.")
             condition = field_name != 'Department' and field_name != 'Position'
             if contains_digits(user_input) and condition:
                 raise ValueError(f"The {field_name} cannot contain digits.")
