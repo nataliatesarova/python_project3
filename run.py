@@ -382,8 +382,12 @@ def edit_employee_data():
                 print("No changes made to email.")
                 break
             # Validate email format
-            if not re.match(r'^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
-                print("Invalid email format. Please enter a valid email address.")
+            if not re.match(
+                r'^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+                    email):
+                print(
+                    "Invalid email format. Please enter a valid email address."
+                    )
                 continue
             # Email is valid, append it to the list
             employee_data.append(email)
@@ -396,7 +400,7 @@ def edit_employee_data():
                 # No input was given, phone number remains unchanged
                 print("No changes made to phone number.")
                 break
-            # Validate phone number (only digits and at least 7 characters long)
+            # Validate phone number (only digits and at least 7 characters)
             number_stripped = number.replace(" ", "")
             if not number_stripped.isdigit():
                 print("Phone number must contain only digits.")
@@ -408,7 +412,7 @@ def edit_employee_data():
             employee_data.append(number)
             break
 
-        # Prompt the user to enter the updated department until a valid input is provided
+        # Prompt for valid department until correct input
         while True:
             department = str(input("Enter updated department: ")).strip()
             if not department:
@@ -423,7 +427,7 @@ def edit_employee_data():
                 employee_data.append(department)
                 break
 
-        # Prompt the user to enter the updated position until a valid input is provided
+        # Request updated position until valid input
         while True:
             position = str(input("Enter updated position: ")).strip()
             if not position:
@@ -456,11 +460,14 @@ def edit_employee_data():
                 employee_data.append(salary)
                 break
             except ValueError:
-                print("Use a valid number format, without characters or commas.")
+                print(
+                    "Use a valid number format, without characters or commas."
+                     )
 
-        # Prompt the user to enter the updated start date until a valid input is provided
+        # Request valid start date input
         while True:
-            start_date = input("Enter updated start date [dd/mm/yyyy]: ").strip()
+            start_date = input(
+                "Enter updated start date [dd/mm/yyyy]: ").strip()
             if not start_date:
                 # No input was given, start date remains unchanged
                 print("No changes made to start date.")
