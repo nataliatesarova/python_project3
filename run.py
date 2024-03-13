@@ -190,16 +190,17 @@ def add_employee_data():
     # ID must be unique, positive integer greater than 0
     id = None
     while not valid_id(id):
-        id = str(input("Enter ID: ")).strip()
-        try:
-            id = int(id)
-            if id < 0:
-                id = None
+        input_str = input("Enter ID: ").strip()
+        if input_str.isdigit():
+            id = int(input_str)
+            if id <= 0:
                 print("Invalid ID. ID should be greater than 0")
-        except e:
-            id = None
-            print("Please enter a valid ID")
+                id = None
+            else:
 
+                pass
+        else:
+            print("Please enter a valid ID. ID must be a positive integer.")
     employee_data.append(id)
 
     forename = get_valid_input("Enter forename: ", "Forename")
