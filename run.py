@@ -175,7 +175,7 @@ def get_valid_salary(prompt):
                 raise ValueError("Salary must be greater than 0.")
             return salary
         except ValueError:
-            print("Use a valid number format, without characters or commas.")
+            print("Use valid number format.")
 
 
 def add_employee_data():
@@ -508,36 +508,46 @@ def edit_employee_data():
 
 def delete_employee():
     """
-    code to delete an employee from the sheet
+    Code to delete an employee from the sheet.
     """
     # Ask user for the employee ID to be deleted
-    id = None
-    while id is None:
-        id = str(input("Enter ID to delete: ")).strip()
+    while True:
+        id_input = input("Enter ID to delete: ").strip()
+        if not id_input:
+            print("ID cannot be empty.")
+            continue
         try:
-            id = int(id)
+            id = int(id_input)
             if id < 1:
-                id = None
-                print("Invalid ID")
-        except e:
-            id = None
-            print("Please enter a valid ID")
+                print("Invalid ID. ID should be greater than 0.")
+                continue
+        except ValueError:
+            print("Invalid ID. Please enter a numeric ID.")
+            continue
 
-    # Get the sheet
-    sheet = SHEET.worksheet('Sheet1')
-    # Get all the data in the sheet
-    data = sheet.get_all_values()
+        # Get the sheet
+        sheet = SHEET.worksheet('Sheet1')
+        # Get all the data in the sheet
+        data = sheet.get_all_values()
 
-    # Loop through the data rows and check if the ID matches
-    for i in range(1, len(data)):
-        row = data[i]
-        if row[0] == str(id):
-            # If match found, delete the row and print message
-            sheet.delete_rows(i + 1)
-            print("Data deleted")
-            return
-    # If no match found, print message
-    print("No matching row found")
+        # Check if the ID exists in the sheet
+        id_exists = False
+        for row in data[1:]:
+            if row[0] == str(id):
+                id_exists = True
+                break
+
+        if id_exists:
+            # Loop through the data rows and check if the ID matches
+            for i in range(1, len(data)):
+                row = data[i]
+                if row[0] == str(id):
+                    # If match found, delete the row and print message
+                    sheet.delete_rows(i + 1)
+                    print("Data deleted.")
+                    return
+        else:
+            print("ID does not exist in the sheet. Please enter a valid ID.")
 
 
 def main():
