@@ -272,21 +272,26 @@ def print_employee_data(row):
 
 def search_employee_data():
     """
-    Searches for employee data based on ID and prints the row if found
+    Searches for employee data based on ID and prints the row if found.
     """
-    # Prompt user to input ID for searching
     id = None
     while id is None:
-        id = str(input("Enter ID: ")).strip()
-        try:
-            id = int(id)
-            if id < 1:
-                id = None
-                print("Invalid ID")
-        except e:
+        id_input = input("Enter ID: ").strip()
+        if id_input.isdigit():
+            id = int(id_input)
+            sheet = SHEET.worksheet('Sheet1')
+            data = sheet.get_all_values()
+            found = False
+            for row in data[1:]:
+                if row[0] == str(id):
+                    print_employee_data(row)
+                    found = True
+                    break
+            if not found:
+                print("No matching data was found for the ID.")
+        else:
+            print("Invalid ID. Please enter a numeric ID.")
             id = None
-            print("Please enter a valid ID")
-
     # Open the Sheet1 worksheet and get all data
     sheet = SHEET.worksheet('Sheet1')
 
