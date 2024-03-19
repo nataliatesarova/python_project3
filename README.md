@@ -142,7 +142,7 @@ All tests passed
 
 * Telephone Number Data Entry Validity: The telephone number validation process has been enhanced to enforce digit-only entries with a minimum length requirement. This update ensures that phone numbers are consistently recorded in a standardized format, improving the reliability of contact information.
 
-* Salary Input Handling: Improvements were made to handle salary inputs more robustly, including the ability to convert commas to dots for decimal separation, which is common in some regional numerical formats. This change ensures that salary data is accurately captured and processed, regardless of regional formatting differences.
+* Salary Input Handling: Improvements were made to handle salary inputs more robustly, including the ability to convert commas to dots for decimal separation, which is common in some regions including some European countries. This change ensures that salary data is accurately captured and processed, regardless of regional formatting differences.
 
 ## Heroku Deployment
 The Employee Management System has been designed to be deployed and utilized on Heroku. The terminal template was specifically created by Code Institute to be compatible with the Heroku platform. It may not function properly on a local terminal due to differences in positioning and other technical aspects, even if the program's functionality remains unchanged. Therefore, it is recommended to use the system exclusively on the Heroku platform.

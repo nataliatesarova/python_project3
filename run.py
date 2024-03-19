@@ -150,6 +150,8 @@ def get_valid_input(prompt, field_name):
     while True:
         user_input = input(prompt).strip()
         try:
+            if user_input == "":
+                raise ValueError(f"{field_name} cannot be empty.")
             if contains_invalid_characters(user_input):
                 raise ValueError("Special characters are not allowed.")
             condition = field_name != 'Department' and field_name != 'Position'
