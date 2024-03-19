@@ -132,9 +132,17 @@ Scenario 2: Try to delete an employee using a non-existent ID. The system should
 All tests passed
 
 ## Bugs
-The code has been fortified to handle exceptions and errors, particularly with input validation, data operations, and user interaction, to address potential issues and assist the user by providing informative messages.
+* Editing and Deleting the Last Row: A critical bug was identified where the system failed to edit or delete data in the last row of the Google Sheet. This issue was traced back to the incorrect use of the range in a for-loop (range(1, len(data) - 1)) that inadvertently excluded the last row from being processed. The bug was fixed by adjusting the range to range(1, len(data) + 1), ensuring that the loop now correctly iterates over all rows, including the last one.
 
-An error was found with the editing and deleting of the last row of the sheet. The issue was caused by the use of range(1, len(data) - 1) in the for loop, which excluded the last row of the sheet. This problem was fixed by changing the range to range(1, len(data) + 1), which allowed the loop to iterate over all rows in the data list, including the last row. 
+* Name Field Enhancements: Recognizing the prevalence of double-barrelled names, the system now allows the use of hyphens in the forename and surname fields. This adjustment ensures that individuals with hyphenated names are accurately represented in the system.
+
+* Department and Position Field Flexibility: To accommodate a variety of naming conventions in department and position titles, the system has been updated to allow letters, numbers, and hyphens. This change provides the flexibility needed to accurately capture a wide range of job titles and department names within the organization.
+
+* Email Validation Improvement: The email validity check has been refined to ensure that only correctly formatted email addresses are accepted. This improvement helps in reducing communication errors and ensures that all employees can be reliably contacted through their provided email addresses.
+
+* Telephone Number Data Entry Validity: The telephone number validation process has been enhanced to enforce digit-only entries with a minimum length requirement. This update ensures that phone numbers are consistently recorded in a standardized format, improving the reliability of contact information.
+
+* Salary Input Handling: Improvements were made to handle salary inputs more robustly, including the ability to convert commas to dots for decimal separation, which is common in some regional numerical formats. This change ensures that salary data is accurately captured and processed, regardless of regional formatting differences.
 
 ## Heroku Deployment
 The Employee Management System has been designed to be deployed and utilized on Heroku. The terminal template was specifically created by Code Institute to be compatible with the Heroku platform. It may not function properly on a local terminal due to differences in positioning and other technical aspects, even if the program's functionality remains unchanged. Therefore, it is recommended to use the system exclusively on the Heroku platform.
