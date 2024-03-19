@@ -86,7 +86,19 @@ Python
 [Code Institute Python Linter](https://pep8ci.herokuapp.com/#) - was used for validation to ensure no Python code errors.
 ![CIlinter](readme-docs/images/Linter.png)
 
-## Manual Testing
+### Data Validity Checks 
+
+In the Employee Management System, various data validity checks for maintaining data quality, preventing input errors, and ensuring the reliability of the Employee Management System. Here's a summary of the data validity checks and the reasoning behind them:
+* ID Validation: Ensures that the ID entered for each employee is unique and a positive integer greater than 0. This prevents the system from assigning duplicate IDs and ensures consistency in data retrieval and management.
+* Forename and Surname Validation: Forenames and surnames are essential personal identifiers and should only contain letters (alphabetic characters) and hyphens ("-"). This validation allows for the inclusion of double-barrelled names, where two surnames are joined by a hyphen, maintaining accuracy in name representation.
+* Email Validation: Validates the format of the email address entered for each employee. It ensures that the email follows standard email address format rules to maintain communication accuracy and efficiency.
+* Phone Number Validation: Checks that the phone number entered for each employee consists only of digits and is at least 7 characters long. This validation ensures that valid contact information is provided for each employee.
+* Department and Position Input: While other fields disallow special characters, the department and position fields allow hyphens ("-"). This decision is made considering that department names and job positions often include hyphens for clarity or specificity (e.g., "Software Engineer - Level 2" or "HR - Department 2"). Allowing hyphens enhances the flexibility and usability of the system.
+* Salary Validation: Salary input validation ensures that the entered salary is a valid, positive numerical value. Additionally, to accommodate European conventions where commas (",") are used as decimal separators, the validation process replaces commas with decimal dots. This conversion ensures consistency in salary formatting across different regions and prevents errors in financial data management.
+* Date Validation: Ensures that the date entered for each employee's start date follows the format DD/MM/YYYY and falls within the acceptable range of years (1920-2024). Validating dates prevents data entry errors and ensures consistency in date formats throughout the system.
+
+
+### Manual Testing
 Extensive manual testing was performed on the the menu-driven interface to manage an employee data system, with special emphasis placed on preventing the insertion of invalid or empty data, and ensuring user guidance if the user inputs invalid information.
 
 ### User story testing
