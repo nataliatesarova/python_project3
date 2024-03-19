@@ -134,6 +134,8 @@ All tests passed
 ## Bugs
 * Editing and Deleting the Last Row: A critical bug was identified where the system failed to edit or delete data in the last row of the Google Sheet. This issue was traced back to the incorrect use of the range in a for-loop (range(1, len(data) - 1)) that inadvertently excluded the last row from being processed. The bug was fixed by adjusting the range to range(1, len(data) + 1), ensuring that the loop now correctly iterates over all rows, including the last one.
 
+* Enhanced Field Validation: Previously, the system allowed empty inputs for key fields (forename, surname, department, position), leading to incomplete employee records. The issue was fixed by updating the get_valid_input function to reject empty inputs for these fields, ensuring all employee records are complete upon entry.
+
 * Name Field Enhancements: Recognizing the prevalence of double-barrelled names, the system now allows the use of hyphens in the forename and surname fields. This adjustment ensures that individuals with hyphenated names are accurately represented in the system.
 
 * Department and Position Field Flexibility: To accommodate a variety of naming conventions in department and position titles, the system has been updated to allow letters, numbers, and hyphens. This change provides the flexibility needed to accurately capture a wide range of job titles and department names within the organization.
