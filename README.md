@@ -87,7 +87,6 @@ Python
 ![CIlinter](readme-docs/images/Linter.png)
 
 ### Data Validity Checks 
-
 In the Employee Management System, various data validity checks for maintaining data quality, preventing input errors, and ensuring the reliability of the Employee Management System. Here's a summary of the data validity checks and the reasoning behind them:
 * ID Validation: Ensures that the ID entered for each employee is unique and a positive integer greater than 0. This prevents the system from assigning duplicate IDs and ensures consistency in data retrieval and management.
 * Forename and Surname Validation: Forenames and surnames are essential personal identifiers and should only contain letters (alphabetic characters) and hyphens ("-"). This validation allows for the inclusion of double-barrelled names, where two surnames are joined by a hyphen, maintaining accuracy in name representation.
@@ -105,30 +104,30 @@ Extensive manual testing was performed on the the menu-driven interface to manag
 
 Add New Employee:
 
-Scenario 1: Input valid data for a new employee (ID, name, contact details, department, etc.) and verify it's correctly added to the Google Sheet, and 'Employee data added successfully' displayed.
-Scenario 2: Attempt to add an employee with an existing ID and ensure the system rejects the addition, displaying 'Invalid option selected. Please try again'.
-Scenario 3: Try adding an employee with invalid or incomplete data (e.g., missing name, incorrect email format) and confirm the system prompts for valid information (e.g. forneame cannot be empty, invalid email, etc).
+Scenario 1: Successfully input valid data for a new employee (ID, name, contact details, department, etc.), ensuring it's correctly added to the Google Sheet. Confirmation message 'Employee data added successfully' should be displayed.
+Scenario 2: Attempt to add an employee with an ID that already exists in the system. The system should reject the addition and display the error message, 'ID already in use. Please try again'.
+Scenario 3: Try to add an employee with invalid or incomplete data, such as a missing name or an incorrectly formatted email. The system should prompt for valid information with appropriate error messages like 'Forename cannot be empty', 'Invalid email format. Please enter a valid email address.', and guide the user to re-enter the data correctly.
 
 All tests passed
 
 Search Employee Data:
 
-Scenario 1: Search for an existing employee by entering their valid ID and verify the system displays all their details accurately.
-Scenario 2: Search for a non-existent employee ID and ensure the system handles it properly, displaying 'No matching data was found for the ID'.
+Scenario 1: Search for an existing employee by entering their valid ID. The system should accurately display all the details of the searched employee.
+Scenario 2: Attempt to search for an employee using a non-existent ID. The system should handle this gracefully, informing the user with 'No matching data was found for the ID' and return to the main menu.
 
 All tests passed
 
 Edit Employee Data:
 
-Scenario 1: Update an existing employee's details (name, contact information, salary, etc.) and confirm the changes are accurately reflected in the Google Sheet, and 'Editing success' displayed.
-Scenario 2: Attempt to update an employee with invalid data and verify the system prevents the update, and allows the user to resubmit correct data.
+Scenario 1: Update an existing employee's details accurately (name, contact information, salary, etc.) and verify that the changes are reflected in the Google Sheet. A confirmation message 'Editing success' should be displayed.
+Scenario 2: Attempt to update an employee's information with invalid data (e.g., entering alphabets in the salary field or an incorrect email format). The system should prevent the update and display relevant error messages such as 'Use valid number format.' for salary and 'Invalid email format. Please enter a valid email address.' for email, prompting the user to enter the correct data.
 
 All tests passed
 
 Delete Employee Data:
 
-Scenario 1: Delete an existing employee's data and confirm that their record is removed entirely from the Google Sheet, and 'Data deleted' displayed.
-Scenario 2: Try deleting a non-existent employee ID and ensure the system handles it appropriately, displaying 'No matching row found'.
+Scenario 1: Successfully delete an existing employee's data by entering their valid ID. Confirm that their record is removed from the Google Sheet, and the message 'Data deleted' is displayed.
+Scenario 2: Try to delete an employee using a non-existent ID. The system should properly indicate that no matching data was found with the message 'ID does not exist in the sheet. Please enter a valid ID.', ensuring that the user is aware no action was taken.
 
 All tests passed
 
