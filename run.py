@@ -365,7 +365,7 @@ def edit_employee_data():
 
                 if field_name == 'Email address':
                     if not is_valid_email(input_value):
-                        print("Invalid email format. Please enter a valid email address.")
+                        print("e.g. johnpaul@gmail.com")
                         continue
 
                 if field_name == 'Phone number':
@@ -395,7 +395,7 @@ def edit_employee_data():
 
                 if field_name == 'Start date':
                     if not valid_date(field_name, input_value):
-                        print("Invalid date format. Please use DD/MM/YYYY.")
+                        print("Please use DD/MM/YYYY.")
                         continue
 
                 value = input_value
