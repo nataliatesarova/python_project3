@@ -306,7 +306,7 @@ def search_employee_data():
             print_employee_data(row)
             return
     # If no match found, print message
-    print("No matching data was found for the ID")
+    print("Start again.")
 
 
 def edit_employee_data():
