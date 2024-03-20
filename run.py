@@ -358,8 +358,9 @@ def edit_employee_data():
                     break  # Break the loop if input is empty
 
                 if field_name == 'Forename' or field_name == 'Surname':
-                    if contains_digits(input_value):
-                        print(f"{field_name} cannot contain digits.")
+                    # Allow letters and hyphens only. Disallow digits and other special characters.
+                    if not re.match("^[A-Za-z-]+$", input_value):
+                        print(f"{field_name} can only contain letters and hyphens.")
                         continue
 
                 if field_name == 'Email address':
@@ -370,6 +371,16 @@ def edit_employee_data():
                 if field_name == 'Phone number':
                     if not is_valid_phone_number(input_value):
                         print("Invalid phone number format. Please enter a valid phone number.")
+                        continue
+
+                if field_name == 'Department':
+                    if not re.match("^[A-Za-z0-9 \-]+$", input_value):
+                        print(f"{field_name} cannot contain special characters.")
+                        continue
+
+                if field_name == 'Position':
+                    if not re.match("^[A-Za-z0-9 \-]+$", input_value):
+                        print(f"{field_name} cannot contain special characters.")
                         continue
 
                 if field_name == 'Annual salary':
@@ -413,7 +424,6 @@ def edit_employee_data():
 
         print("Editing complete.")
         break
-
 
 
 def delete_employee():
