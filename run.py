@@ -177,7 +177,7 @@ def get_valid_salary(prompt):
                 raise ValueError("Salary must be greater than 0.")
             return salary
         except ValueError:
-            print("Use valid number format.")
+            print("Enter valid salary.")
 
 
 def add_employee_data():
@@ -216,7 +216,7 @@ def add_employee_data():
         email = str(input("Enter email address: ")).strip()
         if not is_valid_email(email):
             email = None
-            print("Invalid email")
+            print("e.g. johnpaul@gmail.com")
 
     employee_data.append(email)
 
