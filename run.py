@@ -353,14 +353,16 @@ def edit_employee_data():
         def prompt_field_update(field_name):
             value = None
             while value is None:
-                input_value = input(f"Enter updated {field_name} or press enter to skip: ").strip()
+                input_value = input(
+                    f"Enter updated {field_name} or press enter to skip: "
+                    ).strip()
                 if not input_value:
                     break  # Break the loop if input is empty
 
                 if field_name == 'Forename' or field_name == 'Surname':
-                    # Allow letters and hyphens only. Disallow digits and other special characters.
+                    # Allow letters and hyphens only.
                     if not re.match("^[A-Za-z-]+$", input_value):
-                        print(f"{field_name} can only contain letters and hyphens.")
+                        print(f"{field_name} Only letters and hyphens.")
                         continue
 
                 if field_name == 'Email address':
@@ -370,17 +372,17 @@ def edit_employee_data():
 
                 if field_name == 'Phone number':
                     if not is_valid_phone_number(input_value):
-                        print("Invalid phone number format. Please enter a valid phone number.")
+                        print("Please enter a valid phone number format.")
                         continue
 
                 if field_name == 'Department':
                     if not re.match("^[A-Za-z0-9 \-]+$", input_value):
-                        print(f"{field_name} cannot contain special characters.")
+                        print(f"{field_name} No special characters.")
                         continue
 
                 if field_name == 'Position':
                     if not re.match("^[A-Za-z0-9 \-]+$", input_value):
-                        print(f"{field_name} cannot contain special characters.")
+                        print(f"{field_name} No special characters.")
                         continue
 
                 if field_name == 'Annual salary':
