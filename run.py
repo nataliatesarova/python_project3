@@ -73,7 +73,7 @@ def is_valid_email(email):
 def valid_date(field_name, date):
     """Checks date validity in DD/MM/YYYY format and year range 1920-2024."""
     if date is None or not date.strip():
-        print(f"{field_name} cannot be empty")
+        print(f"{field_name} is final entry and cannot be empty.")
         return False
     try:
         date = date.split("/")
