@@ -38,7 +38,7 @@ def valid_id(id):
             id_present = True
 
     if id_present:
-        print("ID already in use. Please try again")
+        print("ID already in use. Please try again.")
         return False
 
     return True
@@ -51,7 +51,7 @@ def empty_value(field_name, value):
         return False
 
     if len(value) == 0:
-        print(field_name + " cannot be empty")
+        print(field_name + " cannot be empty.")
         return False
 
     return True
@@ -84,7 +84,7 @@ def valid_date(field_name, date):
                 int(date[1]) < 1 or int(date[1]) > 12 or
                 int(date[2]) < 1920 or int(date[2]) > 2024
         ):
-            print("Invalid date. Please try again")
+            print("Invalid date. Please try again.")
             return False
     except ValueError:
         print("Invalid date format. Please use DD/MM/YYYY")
@@ -113,7 +113,7 @@ def is_valid_phone_number(number):
 
 def add_employee(sheet_name, data):
     """
-    code to add a new employee into the sheet
+    Code to add a new employee into the sheet.
     """
     # Get the worksheet with the specified name
     sheet = SHEET.worksheet(sheet_name)
@@ -124,7 +124,7 @@ def add_employee(sheet_name, data):
 # Function to check for invalid characters
 def contains_invalid_characters(input_str):
     """
-    Check if the input string contains any special characters
+    Check if the input string contains any special characters.
     """
     if re.search(r'[!@#$%^&*()+=\[\]{};:\'"\\|,.<>/?]', input_str):
         return True
@@ -134,7 +134,7 @@ def contains_invalid_characters(input_str):
 
 def contains_digits(input_str):
     """
-    Check if the input string contains any digits
+    Check if the input string contains any digits.
     """
     if re.search(r'[0123456789]', input_str):
         return True
@@ -145,7 +145,7 @@ def contains_digits(input_str):
 # Function for getting validated input
 def get_valid_input(prompt, field_name):
     """
-    Repeatedly ask for input until it does not contain invalid characters
+    Repeatedly ask for input until it does not contain invalid characters.
     """
     while True:
         user_input = input(prompt).strip()
@@ -182,7 +182,7 @@ def get_valid_salary(prompt):
 
 def add_employee_data():
     """
-    Function to add employee data from user input
+    Function to add employee data from user input.
     """
     # Prompt user to enter employee data
     employee_data = []
@@ -311,7 +311,7 @@ def search_employee_data():
 
 def edit_employee_data():
     """
-    Code to edit the details of an existing employee
+    Code to edit the details of an existing employee.
     """
     while True:
         # Get the ID of the employee to be edited
