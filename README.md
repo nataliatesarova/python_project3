@@ -29,17 +29,17 @@ Option 2 allows the user to search for a current employee by entering the employ
 
 If an ID is not matched the user is informed with the message 'No matching data was found for the ID' and the main options are presented.
 
-![No matching ID](readme-docs/images/no_id.png)
+![No matching ID](readme-docs/images/id_not_match.png)
 
 ### Edit employee data
-Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with 'if you don't want to edit a data, please leave it empty by pressing enter key'. The user can then in effect scroll through the data points till the one required to be edited. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing success'.
+Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with 'if you don't want to edit a data, please leave it empty by pressing enter key'. The user can then in effect scroll through the data points till the one required to be edited. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing complete'.
 
-![option 3](readme-docs/images/option3.png)
+![option 3](readme-docs/images/edit_employee_data.png)
 
 ### Delete employee data
 Option 4 allows the user to delete the data of a current employee after entering the employees ID. If the ID is found the employee is deleted from the Google sheet and user is provided with confirmation message 'Data deleted'.
 
-![option 4](readme-docs/images/option4.png)
+![option 4](readme-docs/images/delete.png)
 
 ## User Experience (UX)
 
