@@ -182,7 +182,7 @@ def get_valid_salary(prompt):
 
 def add_employee_data():
     """
-    function to add employee data from user input
+    Function to add employee data from user input
     """
     # Prompt user to enter employee data
     employee_data = []
@@ -196,7 +196,7 @@ def add_employee_data():
         if input_str.isdigit():
             id = int(input_str)
             if id <= 0:
-                print("Invalid ID. ID should be greater than 0")
+                print("Invalid ID. ID should be greater than 0.")
                 id = None
             else:
 
@@ -252,7 +252,7 @@ def add_employee_data():
     # Call the add_employee function to add the employee data to the spredsheet
     add_employee('Sheet1', employee_data)
 
-    print("Employee data added successfully")
+    print("Employee data added successfully.")
 
 
 def print_employee_data(row):
@@ -346,11 +346,11 @@ def edit_employee_data():
             print("No matching data found. Please try again.")
             continue  # Continue to prompt for ID input
 
-        # Retrieve current data for the row to be edited
-        current_data = data[editing_row]
-
         # Function to prompt for field update
         def prompt_field_update(field_name):
+            """
+            Requests updated input for a specified field and allows skipping.
+            """
             value = None
             while value is None:
                 input_value = input(
@@ -376,12 +376,12 @@ def edit_employee_data():
                         continue
 
                 if field_name == 'Department':
-                    if not re.match("^[A-Za-z0-9 \-]+$", input_value):
+                    if not re.match("^[-A-Za-z0-9 ]+$", input_value):
                         print(f"{field_name} No special characters.")
                         continue
 
                 if field_name == 'Position':
-                    if not re.match("^[A-Za-z0-9 \-]+$", input_value):
+                    if not re.match("^[-A-Za-z0-9 ]+$", input_value):
                         print(f"{field_name} No special characters.")
                         continue
 
@@ -405,8 +405,10 @@ def edit_employee_data():
             return value
 
         # Prompt for updates, only if input is provided
-        fields_to_update = ["Forename", "Surname", "Email address", "Phone number",
-                            "Department", "Position", "Annual salary", "Start date"]
+        fields_to_update = [
+            "Forename", "Surname", "Email address", "Phone number",
+            "Department", "Position", "Annual salary", "Start date"
+        ]
 
         updated_values = []
         for field in fields_to_update:
