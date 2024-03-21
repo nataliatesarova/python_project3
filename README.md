@@ -13,11 +13,12 @@ Option 1 allows the user to enter new employee forename, surname, email, telepho
 
 With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Employee data added successfully'. Monthly salary is automatically calculated from the annual salary. The main options are then once again presented. 
 
-If all the data points required are not entered in the correct format the user will be presented with a warning message and option to reenter the data correctly. For instance: ID already in use; empty field; '.' and '@' missing from email; date day less than 1 or greater than 31; '.' rather than '/' in date; 
+If all the data points required are not entered in the correct format the user will be presented with a warning message and option to reenter the data correctly. For instance: ID already in use; empty field; '.' and '@' missing from email; telephone number must be at least 7 digits long; date day less than 1 or greater than 31; '.' rather than '/' in date; 
 
 ![ID already used](readme-docs/images/id_already_in_use.png)
 ![Empty field](readme-docs/images/empty_field.png)
 ![Invalid email](readme-docs/images/invalid_email.png)
+![Telephone number](readme-docs/images/phone_number.png)
 ![Date greater than 31](readme-docs/images/date-greater31.png)
 ![Invalid date](readme-docs/images/invalid_date.png)
 
