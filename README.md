@@ -13,7 +13,7 @@ Option 1 allows the user to enter new employee forename, surname, email, telepho
 
 With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Employee data added successfully'. Monthly salary is automatically calculated from the annual salary. The main options are then once again presented. 
 
-If all the data points required are not entered in the correct format the user will be presented with a warning message and option to reenter the data correctly. For instance: ID already in use; empty field; '.' and '@' missing from email; telephone number must be at least 7 digits long; date day less than 1 or greater than 31; '.' rather than '/' in date; 
+If all the data points required are not entered in the correct format the user will be presented with a warning message and option to reenter the data correctly. For instance: ID already in use; invalid email format; phone number must be at least 7 digits; invalid start date.
 
 ![ID already used](readme-docs/images/id_already_in_use.png)
 ![Empty field](readme-docs/images/empty_field.png)
@@ -28,12 +28,12 @@ Option 2 allows the user to search for a current employee by entering the employ
 
 ![option 2](readme-docs/images/optiontwo.png)
 
-If an ID is not matched the user is informed with the message 'No matching data was found for the ID' and the main options are presented.
+If an ID is not matched the user is informed with the message 'No matching data was found for the ID. Start again.' and the main options are presented.
 
 ![No matching ID](readme-docs/images/id_not_match.png)
 
 ### Edit employee data
-Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with 'if you don't want to edit a data, please leave it empty by pressing enter key'. The user can then in effect scroll through the data points till the one required to be edited. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing complete'.
+Option 3 allows the user to edit the data of a current employee after entering the employees ID. If ID found the user will be presented with 'Enter updated .... or press eneter to skip'. The user can then in effect scroll through the data points till the one required to be edited. With correct entry of the data the Google sheet is updated with the new employee information and the user is provided with the confirmation message 'Editing complete'.
 
 ![option 3](readme-docs/images/edit_employee_data.png)
 
@@ -61,7 +61,7 @@ To enhance user experience data prompts appear if the user inputs data in an inc
 ![Flow Chart](readme-docs/images/Flowchart.png)
 
 ## Google Sheet
-The Python script interacts with a [Google Sheet](https://docs.google.com/spreadsheets/d/1BZB1oTjWcPVkBEoS4y_POWA-pKdTZbYmrg47M25pwfw/edit#gid=0) using the gspread library allowing the adding, deleting, editing and searching of employee data, in addition to calculating monthly salary. The program provides a basic user interface for interacting with the Sheet.
+The Python script interacts with a [Google Sheet](https://docs.google.com/spreadsheets/d/1BZB1oTjWcPVkBEoS4y_POWA-pKdTZbYmrg47M25pwfw/edit#gid=0) using the gspread library allowing the adding, deleting, editing and searching of employee data. The program provides a basic user interface for interacting with the Sheet.
 
 ![Google Sheet](readme-docs/images/sheet.png)
 
@@ -92,10 +92,10 @@ In the Employee Management System, various data validity checks for maintaining 
 * ID Validation: Ensures that the ID entered for each employee is unique and a positive integer greater than 0. This prevents the system from assigning duplicate IDs and ensures consistency in data retrieval and management.
 * Forename and Surname Validation: Forenames and surnames are essential personal identifiers and should only contain letters (alphabetic characters) and hyphens ("-"). This validation allows for the inclusion of double-barrelled names, where two surnames are joined by a hyphen, maintaining accuracy in name representation.
 * Email Validation: Validates the format of the email address entered for each employee. It ensures that the email follows standard email address format rules to maintain communication accuracy and efficiency.
-* Phone Number Validation: Checks that the phone number entered for each employee consists only of digits and is at least 7 characters long. This validation ensures that valid contact information is provided for each employee.
+* Phone Number Validation: Checks that the phone number entered for each employee consists only of digits and is at least 7 characters long. Phone numbers around the world are usually at least 7 digits long, not including the country code. Country codes will be entered with the format 00 instead of +. This validation ensures that valid contact information is provided for each employee.
 * Department and Position Input: While other fields disallow special characters, the department and position fields allow hyphens ("-"). This decision is made considering that department names and job positions often include hyphens for clarity or specificity (e.g., "Software Engineer - Level 2" or "HR - Department 2"). Allowing hyphens enhances the flexibility and usability of the system.
 * Salary Validation: Salary input validation ensures that the entered salary is a valid, positive numerical value. Additionally, to accommodate European conventions where commas (",") are used as decimal separators, the validation process replaces commas with decimal dots. This conversion ensures consistency in salary formatting across different regions and prevents errors in financial data management.
-* Date Validation: Ensures that the date entered for each employee's start date follows the format DD/MM/YYYY and falls within the acceptable range of years (1920-2024). Validating dates prevents data entry errors and ensures consistency in date formats throughout the system.
+* Date Validation: Ensures that the date entered for each employee's start date follows the format DD/MM/YYYY, with days ranging between 1-31 and months between 1-12, and falls within the acceptable range of years (1920-2024). Validating dates prevents data entry errors and ensures consistency in date formats throughout the system.
 
 
 ### Manual Testing
@@ -107,28 +107,28 @@ Add New Employee:
 
 Scenario 1: Successfully input valid data for a new employee (ID, name, contact details, department, etc.), ensuring it's correctly added to the Google Sheet. Confirmation message 'Employee data added successfully' should be displayed.
 Scenario 2: Attempt to add an employee with an ID that already exists in the system. The system should reject the addition and display the error message, 'ID already in use. Please try again'.
-Scenario 3: Try to add an employee with invalid or incomplete data, such as a missing name or an incorrectly formatted email. The system should prompt for valid information with appropriate error messages like 'Forename cannot be empty', 'Invalid email format. Please enter a valid email address.', and guide the user to re-enter the data correctly.
+Scenario 3: Try to add an employee with invalid or incomplete data, such as a missing name or an incorrectly formatted email. The system should prompt for valid information with appropriate error messages like 'Forename cannot be empty', 'Invalid email format. Please enter a valid email address. e.g. johnpaul@gmail.com', and guide the user to re-enter the data correctly.
 
 All tests passed
 
 Search Employee Data:
 
 Scenario 1: Search for an existing employee by entering their valid ID. The system should accurately display all the details of the searched employee.
-Scenario 2: Attempt to search for an employee using a non-existent ID. The system should handle this gracefully, informing the user with 'No matching data was found for the ID' and return to the main menu.
+Scenario 2: Attempt to search for an employee using a non-existent ID. The system should inform the user with 'No matching data was found for the ID. Start again.' and return to the main menu.
 
 All tests passed
 
 Edit Employee Data:
 
-Scenario 1: Update an existing employee's details accurately (name, contact information, salary, etc.) and verify that the changes are reflected in the Google Sheet. A confirmation message 'Editing success' should be displayed.
-Scenario 2: Attempt to update an employee's information with invalid data (e.g., entering alphabets in the salary field or an incorrect email format). The system should prevent the update and display relevant error messages such as 'Use valid number format.' for salary and 'Invalid email format. Please enter a valid email address.' for email, prompting the user to enter the correct data.
+Scenario 1: Update an existing employee's details accurately (name, contact information, salary, etc.) and verify that the changes are reflected in the Google Sheet. A confirmation message 'Editing complete' should be displayed.
+Scenario 2: Attempt to update an employee's information with invalid data (e.g., entering alphabets in the salary field or an incorrect email format). The system should prevent the update, and display relevant error messages and prompting to the enter the correct data. For instance 'Invalid email format. Please enter a valid email address. e.g. johnpaul@gmail.com'
 
 All tests passed
 
 Delete Employee Data:
 
 Scenario 1: Successfully delete an existing employee's data by entering their valid ID. Confirm that their record is removed from the Google Sheet, and the message 'Data deleted' is displayed.
-Scenario 2: Try to delete an employee using a non-existent ID. The system should properly indicate that no matching data was found with the message 'ID does not exist in the sheet. Please enter a valid ID.', ensuring that the user is aware no action was taken.
+Scenario 2: Try to delete an employee using a non-existent ID. The system should properly indicate that no matching data was found with the message 'ID does not exist in the sheet. Please enter a valid ID'.
 
 All tests passed
 
@@ -145,7 +145,7 @@ All tests passed
 
 * Telephone Number Data Entry Validity: The telephone number validation process has been enhanced to enforce digit-only entries with a minimum length requirement. This update ensures that phone numbers are consistently recorded in a standardized format, improving the reliability of contact information.
 
-* Salary Input Handling: Improvements were made to handle salary inputs more robustly, including the ability to convert commas to dots for decimal separation, which is common in some regions including some European countries. This change ensures that salary data is accurately captured and processed, regardless of regional formatting differences.
+* Salary Input Handling: Improvements were made to handle salary inputs more robustly, including the ability to convert commas to dots for decimal separation, which is common in some regions. This change ensures that salary data is accurately captured and processed, regardless of regional formatting differences.
 
 ## Heroku Deployment
 The Employee Management System has been designed to be deployed and utilized on Heroku. The terminal template was specifically created by Code Institute to be compatible with the Heroku platform. It may not function properly on a local terminal due to differences in positioning and other technical aspects, even if the program's functionality remains unchanged. Therefore, it is recommended to use the system exclusively on the Heroku platform.
